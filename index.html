@@ -99,4 +99,731 @@
                     <span class="inline-block bg-cyber-neon/10 border border-cyber-neon/30 text-cyber-neon text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4">
                         <i class="fa-solid fa-bolt mr-1"></i> Plateforme eSport & Jeux Mobiles Régionale
                     </span>
-                    <h1 class="text-3xl sm:text-5xl font
+                    <h1 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mb-4">
+                        Rejoins l'élite de ta <span class="text-cyber-neon">région</span>
+                    </h1>
+                    <p class="text-cyber-muted text-base sm:text-lg mb-6">
+                        Affronte les meilleurs sur Mobile Legends, CODM, Valorant, EA FC 24... Monte en niveau, gagne en notoriété et reçois tes Prize Pools via <strong class="text-white">Wave</strong>.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="switchView('tournaments')" class="bg-cyber-neon text-black font-extrabold px-6 py-3 rounded-lg text-sm hover:bg-cyber-neonDark transition-all">
+                            Explorer les Tournois
+                        </button>
+                        <button onclick="openAuthModal()" class="bg-cyber-black border border-cyber-border text-white font-bold px-6 py-3 rounded-lg text-sm hover:border-cyber-neon transition-all">
+                            Créer un Compte
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION TOURNOIS PAR STATUTS -->
+            <div class="space-y-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <span class="w-3 h-3 rounded-full bg-cyber-neon animate-ping"></span>
+                        <h2 class="text-xl font-black uppercase tracking-wider text-white">Tournois En Cours</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="home-ongoing-list"></div>
+                </div>
+
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <i class="fa-solid fa-calendar-days text-cyber-neon"></i>
+                        <h2 class="text-xl font-black uppercase tracking-wider text-white">Tournois À Venir</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="home-upcoming-list"></div>
+                </div>
+
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <i class="fa-solid fa-flag-checkered text-cyber-muted"></i>
+                        <h2 class="text-xl font-black uppercase tracking-wider text-white">Récemment Terminés</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="home-past-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: LISTE DES TOURNOIS -->
+        <section id="view-tournaments" class="hidden space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-cyber-border pb-6">
+                <div>
+                    <h1 class="text-2xl font-black uppercase tracking-wider">Tous les Tournois</h1>
+                    <p class="text-cyber-muted text-sm">Tournois officiels et créés par la communauté.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <select id="filter-game" onchange="applyFilters()" class="bg-cyber-card border border-cyber-border text-white text-sm rounded-lg p-2.5 outline-none focus:border-cyber-neon">
+                        <option value="ALL">Tous les jeux</option>
+                        <option value="MOBILE LEGENDS">Mobile Legends</option>
+                        <option value="CODM">Call of Duty Mobile</option>
+                        <option value="FREE FIRE">Free Fire</option>
+                        <option value="EA FC 24">EA FC 24</option>
+                        <option value="VALORANT">Valorant</option>
+                        <option value="FOOT 7v7">Foot 7v7 Local</option>
+                        <option value="STREET FIGHTER 6">Street Fighter 6</option>
+                    </select>
+                    <select id="filter-status" onchange="applyFilters()" class="bg-cyber-card border border-cyber-border text-white text-sm rounded-lg p-2.5 outline-none focus:border-cyber-neon">
+                        <option value="ALL">Tous les statuts</option>
+                        <option value="EN COURS">En cours</option>
+                        <option value="À VENIR">À venir</option>
+                        <option value="TERMINÉ">Terminés</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="tournaments-full-grid"></div>
+        </section>
+
+        <!-- VIEW: PAGE DÉDIÉE D'UN TOURNOI (DETAILS) -->
+        <section id="view-tournament-detail" class="hidden space-y-8">
+            <button onclick="switchView('tournaments')" class="text-cyber-muted hover:text-cyber-neon text-sm font-bold flex items-center gap-2 mb-4">
+                <i class="fa-solid fa-arrow-left"></i> Retour aux tournois
+            </button>
+
+            <!-- TOURNEY HEADER CARD -->
+            <div class="bg-cyber-card border border-cyber-border rounded-2xl overflow-hidden space-y-6">
+                <div id="detail-poster-container" class="w-full h-48 sm:h-64 bg-cover bg-center relative flex items-end p-6">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-card via-cyber-card/40 to-transparent"></div>
+                    <div class="relative z-10 flex flex-col">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <span id="detail-game-badge" class="bg-cyber-neon text-black text-xs font-black px-3 py-1 rounded uppercase"></span>
+                            <span id="detail-status-badge" class="text-xs font-bold px-3 py-1 rounded uppercase bg-cyber-black border border-cyber-border text-cyber-muted"></span>
+                        </div>
+                        <h1 id="detail-title" class="text-2xl sm:text-4xl font-black uppercase tracking-wider text-white"></h1>
+                        <p id="detail-organizer" class="text-cyber-muted text-xs mt-1"></p>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-8 pt-0 space-y-6">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div class="text-cyber-muted text-sm">Gestion des affrontements et suivi en direct de la compétition.</div>
+                        <div id="detail-actions" class="flex flex-wrap gap-3"></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-cyber-border pt-6">
+                        <div class="bg-cyber-black p-4 rounded-xl border border-cyber-border">
+                            <div class="text-cyber-muted text-xs uppercase font-bold">Prize Pool (Wave)</div>
+                            <div id="detail-prizepool" class="text-xl font-black text-cyber-neon mt-1">0 FCFA</div>
+                        </div>
+                        <div class="bg-cyber-black p-4 rounded-xl border border-cyber-border">
+                            <div class="text-cyber-muted text-xs uppercase font-bold">Format</div>
+                            <div id="detail-format" class="text-base font-bold text-white mt-1">Élimination directe</div>
+                        </div>
+                        <div class="bg-cyber-black p-4 rounded-xl border border-cyber-border">
+                            <div class="text-cyber-muted text-xs uppercase font-bold">Équipes</div>
+                            <div id="detail-teams-count" class="text-base font-bold text-white mt-1">0 / 0</div>
+                        </div>
+                        <div class="bg-cyber-black p-4 rounded-xl border border-cyber-border">
+                            <div class="text-cyber-muted text-xs uppercase font-bold">Paiement Wave</div>
+                            <div id="detail-wave-status" class="text-base font-bold text-cyber-neon mt-1">Sécurisé</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ARBRE DU TOURNOI & ARBITRAGE -->
+            <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 space-y-6">
+                <div class="flex justify-between items-center border-b border-cyber-border pb-4">
+                    <h2 class="text-lg font-black uppercase tracking-wider">Arbre de Compétition (Bracket)</h2>
+                    <span id="organizer-control-tag" class="hidden text-xs bg-cyber-neon text-black font-extrabold px-3 py-1 rounded-full uppercase">
+                        <i class="fa-solid fa-shield-halved mr-1"></i> Panneau d'Arbitrage (Créateur)
+                    </span>
+                </div>
+                <div id="bracket-container" class="overflow-x-auto py-4">
+                    <div class="min-w-[700px] grid grid-cols-3 gap-6 items-center" id="bracket-matches"></div>
+                </div>
+            </div>
+
+            <!-- ÉQUIPES ENGAGÉES -->
+            <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 space-y-4">
+                <h2 class="text-lg font-black uppercase tracking-wider">Participants & Comptes Wave</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3" id="detail-teams-list"></div>
+            </div>
+        </section>
+
+        <!-- VIEW: COMMUNAUTÉ & CLASSEMENTS / NIVEAUX -->
+        <section id="view-community" class="hidden space-y-8">
+            <div class="border-b border-cyber-border pb-6">
+                <h1 class="text-2xl font-black uppercase tracking-wider">Classements, Niveaux & Notoriété</h1>
+                <p class="text-cyber-muted text-sm">Classement des meilleurs joueurs et des créateurs les plus actifs de la région.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- LEADERBOARD JOUEURS -->
+                <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-center border-b border-cyber-border pb-3">
+                        <h2 class="text-lg font-black uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-gamepad text-cyber-neon"></i> Top Joueurs / Équipes
+                        </h2>
+                        <span class="text-xs text-cyber-muted">Par Niveau & Winrate</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="text-cyber-muted text-xs uppercase border-b border-cyber-border">
+                                    <th class="py-3 px-2">Rang</th>
+                                    <th class="py-3 px-2">Joueur</th>
+                                    <th class="py-3 px-2">Niveau</th>
+                                    <th class="py-3 px-2">Victoires</th>
+                                    <th class="py-3 px-2 text-right">Gains Wave</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-cyber-border text-sm font-medium" id="leaderboard-players-body">
+                                <!-- Rempli dynamiquement -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- LEADERBOARD CRÉATEURS / ORGANISATEURS -->
+                <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-center border-b border-cyber-border pb-3">
+                        <h2 class="text-lg font-black uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-trophy text-cyber-neon"></i> Top Organisateurs
+                        </h2>
+                        <span class="text-xs text-cyber-muted">Par Notoriété & Tournois</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="text-cyber-muted text-xs uppercase border-b border-cyber-border">
+                                    <th class="py-3 px-2">Rang</th>
+                                    <th class="py-3 px-2">Créateur</th>
+                                    <th class="py-3 px-2">Tournois Org.</th>
+                                    <th class="py-3 px-2 text-right">Prize Pool Distribué</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-cyber-border text-sm font-medium" id="leaderboard-creators-body">
+                                <!-- Rempli dynamiquement -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TCHAT GÉNÉRAL -->
+            <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 flex flex-col h-[350px]">
+                <h2 class="text-lg font-black uppercase tracking-wider mb-4 border-b border-cyber-border pb-2">Tchat Général Communauté</h2>
+                <div id="chat-messages" class="flex-grow overflow-y-auto space-y-3 mb-4 text-sm pr-2">
+                    <div class="bg-cyber-black p-2.5 rounded-lg border border-cyber-border">
+                        <span class="text-xs font-bold text-cyber-neon">Raptor_Bot:</span>
+                        <p class="text-cyber-text text-xs mt-0.5">Bienvenue sur la toute nouvelle version de Raptor.gg !</p>
+                    </div>
+                </div>
+                <form onsubmit="sendMessage(event)" class="flex gap-2">
+                    <input type="text" id="chat-input" placeholder="Écrire un message..." class="flex-grow bg-cyber-black border border-cyber-border rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-cyber-neon">
+                    <button type="submit" class="bg-cyber-neon text-black font-bold px-4 py-2 rounded-lg text-xs hover:bg-cyber-neonDark">Envoyer</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER AVEC BOUTON DE RÉINITIALISATION DÉVOILÉ -->
+    <footer class="border-t border-cyber-border bg-cyber-black py-6 mt-10">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-cyber-muted space-y-3">
+            <p>&copy; 2026 RAPTOR.GG - Plateforme eSport & Tournois Régionaux.</p>
+            <p>Paiements sécurisés des Prize Pools intégrés via Wave Virtual Cards.</p>
+            <div>
+                <button onclick="resetData()" class="bg-red-900/30 text-red-400 border border-red-700/50 hover:bg-red-600 hover:text-white px-3 py-1 rounded text-[11px] font-bold transition-all">
+                    <i class="fa-solid fa-rotate-left mr-1"></i> Réinitialiser les données du site
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL 1: AUTH & CHOIX DU RÔLE -->
+    <div id="modal-auth" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cyber-card border border-cyber-border rounded-2xl max-w-md w-full p-6 space-y-6 relative">
+            <button onclick="closeModal('modal-auth')" class="absolute top-4 right-4 text-cyber-muted hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+
+            <div class="text-center">
+                <h3 class="text-xl font-black uppercase tracking-wider">Connexion RAPTOR.GG</h3>
+                <p class="text-cyber-muted text-xs mt-1">Définissez votre profil et votre mode de jeu</p>
+            </div>
+
+            <!-- CHOIX DU RÔLE -->
+            <div class="grid grid-cols-2 gap-3" id="role-selector">
+                <button type="button" onclick="selectRole('JOUEUR')" id="role-btn-joueur" class="p-4 border border-cyber-neon bg-cyber-neon/10 rounded-xl text-center space-y-2 transition-all">
+                    <i class="fa-solid fa-gamepad text-2xl text-cyber-neon"></i>
+                    <div class="font-bold text-sm text-white">Joueur / Équipe</div>
+                    <p class="text-[10px] text-cyber-muted">Gagner XP, badges & Prize Pools</p>
+                </button>
+                <button type="button" onclick="selectRole('CREATEUR')" id="role-btn-createur" class="p-4 border border-cyber-border bg-cyber-black rounded-xl text-center space-y-2 hover:border-cyber-neon transition-all">
+                    <i class="fa-solid fa-trophy text-2xl text-cyber-muted"></i>
+                    <div class="font-bold text-sm text-white">Organisateur</div>
+                    <p class="text-[10px] text-cyber-muted">Créer des tournois & gérer l'arène</p>
+                </button>
+            </div>
+
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-cyber-muted uppercase mb-1">Nom / Structure Esport</label>
+                    <input type="text" id="auth-username" required placeholder="Ex: DakarSnipers_99" class="w-full bg-cyber-black border border-cyber-border rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-cyber-neon">
+                </div>
+
+                <div id="mode-inscription-group" class="grid grid-cols-2 gap-2">
+                    <label class="cursor-pointer border border-cyber-border bg-cyber-black p-2.5 rounded-lg text-center text-xs font-bold text-white hover:border-cyber-neon flex items-center justify-center gap-2">
+                        <input type="radio" name="playmode" value="Solo" checked class="accent-[#00FF66]"> Solo (1v1)
+                    </label>
+                    <label class="cursor-pointer border border-cyber-border bg-cyber-black p-2.5 rounded-lg text-center text-xs font-bold text-white hover:border-cyber-neon flex items-center justify-center gap-2">
+                        <input type="radio" name="playmode" value="Equipe" class="accent-[#00FF66]"> Équipe
+                    </label>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-cyber-muted uppercase mb-1">Numéro Wave (Pour versement Prize Pool)</label>
+                    <input type="text" id="auth-wave" placeholder="Ex: +221 77 000 00 00" class="w-full bg-cyber-black border border-cyber-border rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-cyber-neon">
+                </div>
+
+                <button type="submit" class="w-full bg-cyber-neon text-black font-black py-3 rounded-lg text-sm hover:bg-cyber-neonDark uppercase tracking-wider">
+                    Démarrer l'aventure
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: CRÉER UN TOURNOI -->
+    <div id="modal-create" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cyber-card border border-cyber-border rounded-2xl max-w-lg w-full p-6 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('modal-create')" class="absolute top-4 right-4 text-cyber-muted hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+
+            <div>
+                <h3 class="text-xl font-black uppercase tracking-wider">Organiser un Tournoi</h3>
+                <p class="text-cyber-muted text-xs">Propulsez votre notoriété d'organisateur sur le site</p>
+            </div>
+
+            <form onsubmit="handleCreateTournament(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-cyber-muted uppercase mb-1">Titre du tournoi</label>
+                    <input type="text" id="create-title" required placeholder="Ex: Grand Tournoi Mobile Legends Dakar" class="w-full bg-cyber-black border border-cyber-border rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-cyber-neon">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-cyber-muted uppercase mb-1">Discipline</label>
+                        <select id="create-game" class="w-full bg-cyber-black border border-cyber-border text-white text-sm rounded-lg p-2.5 outline-none focus:border-cyber-neon">
+                            <option value="MOBILE LEGENDS">Mobile Legends</option>
+                            <option value="CODM">Call of Duty Mobile</option>
+                            <option value="FREE FIRE">Free Fire</option>
+                            <option value="EA FC 24">EA FC 24</option>
+                            <option value="VALORANT">Valorant</option>
+                            <option value="FOOT 7v7">Foot 7v7 Local</option>
+                            <option value="STREET FIGHTER 6">Street Fighter 6</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-cyber-muted uppercase mb-1">Prize Pool (FCFA)</label>
+                        <input type="number" id="create-prize" required placeholder="50000" class="w-full bg-cyber-black border border-cyber-border rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-cyber-neon">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-cyber-muted uppercase mb-1">URL de l'affiche / Poster</label>
+                    <input type="url" id="create-poster" placeholder="https://images.unsplash.com/... (laisser vide pour auto)" class="w-full bg-cyber-black border border-cyber-border rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-cyber-neon">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-cyber-muted uppercase mb-1">Numéro Wave Organisateur</label>
+                    <input type="text" id="create-wave" required placeholder="+221 77 123 45 67" class="w-full bg-cyber-black border border-cyber-border rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-cyber-neon">
+                </div>
+
+                <button type="submit" class="w-full bg-cyber-neon text-black font-black py-3 rounded-lg text-sm hover:bg-cyber-neonDark uppercase tracking-wider">
+                    Lancer le Tournoi sur le site
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPT APPLICATION JAVASCRIPT -->
+    <script>
+        // APPLICATION STATE & PERSISTENCE
+        let currentUser = null; 
+        let currentSelectedRole = 'JOUEUR';
+        let activeTournamentId = null;
+
+        let defaultTournaments = [
+            {
+                id: 't1',
+                title: 'Dakar Mobile Legends Pro Series',
+                game: 'MOBILE LEGENDS',
+                status: 'EN COURS',
+                organizer: 'Raptor_Admin',
+                prize: 75000,
+                maxTeams: 4,
+                poster: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80',
+                teams: [
+                    { name: 'Blacklist Dakar', wave: '+221 77 111 22 33', mode: 'Équipe' },
+                    { name: 'Echo Sen', wave: '+221 78 222 33 44', mode: 'Équipe' },
+                    { name: 'Guediawaye Titans', wave: '+221 70 333 44 55', mode: 'Équipe' },
+                    { name: 'Pikine Kings', wave: '+221 76 444 55 66', mode: 'Équipe' }
+                ],
+                matches: [
+                    { id: 'm1', round: 'Demi-Finale 1', teamA: 'Blacklist Dakar', teamB: 'Echo Sen', scoreA: 2, scoreB: 1, winner: 'Blacklist Dakar' },
+                    { id: 'm2', round: 'Demi-Finale 2', teamA: 'Guediawaye Titans', teamB: 'Pikine Kings', scoreA: 0, scoreB: 2, winner: 'Pikine Kings' },
+                    { id: 'm3', round: 'Grande Finale', teamA: 'Blacklist Dakar', teamB: 'Pikine Kings', scoreA: null, scoreB: null, winner: null }
+                ]
+            },
+            {
+                id: 't2',
+                title: 'CODM Sénégal Championship',
+                game: 'CODM',
+                status: 'À VENIR',
+                organizer: 'Thiès_Gaming_Club',
+                prize: 60000,
+                maxTeams: 4,
+                poster: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=800&q=80',
+                teams: [
+                    { name: 'Ghost Squad', wave: '+221 77 555 66 77', mode: 'Équipe' },
+                    { name: 'Shadow Snipers', wave: '+221 78 888 99 00', mode: 'Solo' }
+                ],
+                matches: [
+                    { id: 'm1', round: 'Demi-Finale 1', teamA: 'Ghost Squad', teamB: 'Shadow Snipers', scoreA: null, scoreB: null, winner: null },
+                    { id: 'm2', round: 'Demi-Finale 2', teamA: 'En attente...', teamB: 'En attente...', scoreA: null, scoreB: null, winner: null },
+                    { id: 'm3', round: 'Grande Finale', teamA: 'En attente...', teamB: 'En attente...', scoreA: null, scoreB: null, winner: null }
+                ]
+            }
+        ];
+
+        let tournaments = JSON.parse(localStorage.getItem('raptor_tournaments')) || defaultTournaments;
+        let playersStats = JSON.parse(localStorage.getItem('raptor_players')) || {
+            'DakarEsport_Samba': { wins: 14, total: 16, earnings: 150000, lvl: 8, badge: 'Légende Wave' },
+            'ApexPredators_SN': { wins: 9, total: 12, earnings: 90000, lvl: 5, badge: 'Pro Sniper' },
+            'SaintLouis_FC': { wins: 6, total: 10, earnings: 50000, lvl: 3, badge: 'Combattant' }
+        };
+
+        let creatorsStats = JSON.parse(localStorage.getItem('raptor_creators')) || {
+            'Raptor_Admin': { count: 12, totalPrize: 450000 },
+            'Thiès_Gaming_Club': { count: 5, totalPrize: 180000 }
+        };
+
+        function saveToLocalStorage() {
+            localStorage.setItem('raptor_tournaments', JSON.stringify(tournaments));
+            localStorage.setItem('raptor_players', JSON.stringify(playersStats));
+            localStorage.setItem('raptor_creators', JSON.stringify(creatorsStats));
+        }
+
+        function resetData() {
+            if (confirm("Voulez-vous vraiment tout réinitialiser ? Cela remettra le site à zéro.")) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+
+        // INIT APP
+        window.addEventListener('DOMContentLoaded', () => {
+            renderHomeTournaments();
+            renderTournamentsList();
+            renderLeaderboards();
+        });
+
+        // VIEW ROUTER
+        function switchView(viewName) {
+            ['home', 'tournaments', 'tournament-detail', 'community'].forEach(view => {
+                document.getElementById(`view-${view}`).classList.add('hidden');
+            });
+            document.getElementById(`view-${viewName}`).classList.remove('hidden');
+
+            ['home', 'tournaments', 'community'].forEach(nav => {
+                const btn = document.getElementById(`nav-${nav}`);
+                if (btn) {
+                    if (nav === viewName) {
+                        btn.className = "px-4 py-2 rounded-lg text-sm font-semibold transition-all border border-transparent text-cyber-neon bg-cyber-neon/10 border-cyber-neon/30";
+                    } else {
+                        btn.className = "px-4 py-2 rounded-lg text-sm font-semibold text-cyber-muted hover:text-white transition-all";
+                    }
+                }
+            });
+        }
+
+        // AUTH & ROLES
+        function openAuthModal() {
+            document.getElementById('modal-auth').classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        function selectRole(role) {
+            currentSelectedRole = role;
+            const btnJ = document.getElementById('role-btn-joueur');
+            const btnC = document.getElementById('role-btn-createur');
+            const modeGroup = document.getElementById('mode-inscription-group');
+
+            if (role === 'JOUEUR') {
+                btnJ.className = "p-4 border border-cyber-neon bg-cyber-neon/10 rounded-xl text-center space-y-2 transition-all";
+                btnC.className = "p-4 border border-cyber-border bg-cyber-black rounded-xl text-center space-y-2 hover:border-cyber-neon transition-all";
+                modeGroup.classList.remove('hidden');
+            } else {
+                btnC.className = "p-4 border border-cyber-neon bg-cyber-neon/10 rounded-xl text-center space-y-2 transition-all";
+                btnJ.className = "p-4 border border-cyber-border bg-cyber-black rounded-xl text-center space-y-2 hover:border-cyber-neon transition-all";
+                modeGroup.classList.add('hidden');
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const name = document.getElementById('auth-username').value;
+            const wave = document.getElementById('auth-wave').value;
+            const modeInput = document.querySelector('input[name="playmode"]:checked');
+            const mode = modeInput ? modeInput.value : 'Équipe';
+
+            currentUser = {
+                name: name,
+                role: currentSelectedRole,
+                wave: wave || 'Non renseigné',
+                mode: mode
+            };
+
+            if (currentUser.role === 'JOUEUR' && !playersStats[name]) {
+                playersStats[name] = { wins: 0, total: 1, earnings: 0, lvl: 1, badge: 'Rookie' };
+            } else if (currentUser.role === 'CREATEUR' && !creatorsStats[name]) {
+                creatorsStats[name] = { count: 0, totalPrize: 0 };
+            }
+            saveToLocalStorage();
+
+            document.getElementById('btn-auth').classList.add('hidden');
+            document.getElementById('user-profile-badge').classList.remove('hidden');
+            document.getElementById('user-profile-badge').classList.add('flex');
+            document.getElementById('user-display-name').innerText = currentUser.name;
+            document.getElementById('user-display-role').innerText = currentUser.role === 'JOUEUR' ? `JOUEUR (${currentUser.mode})` : 'ORGANISATEUR';
+            document.getElementById('user-display-lvl').innerText = currentUser.role === 'JOUEUR' ? `LVL ${playersStats[name]?.lvl || 1}` : 'ORG';
+
+            if (currentUser.role === 'CREATEUR') {
+                document.getElementById('btn-create-tourney').classList.remove('hidden');
+            } else {
+                document.getElementById('btn-create-tourney').classList.add('hidden');
+            }
+
+            closeModal('modal-auth');
+            renderLeaderboards();
+
+            if (activeTournamentId) {
+                openTournamentDetail(activeTournamentId);
+            }
+        }
+
+        // TOURNEY RENDERING
+        function createTournamentCard(t) {
+            const defaultPoster = 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80';
+            const posterImg = t.poster || defaultPoster;
+
+            return `
+                <div onclick="openTournamentDetail('${t.id}')" class="bg-cyber-card border border-cyber-border hover:border-cyber-neon rounded-xl overflow-hidden cursor-pointer transition-all flex flex-col justify-between group">
+                    <div class="h-36 bg-cover bg-center relative" style="background-image: url('${posterImg}')">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span class="bg-cyber-black/80 border border-cyber-neon/30 text-cyber-neon text-[10px] font-bold px-2.5 py-1 rounded uppercase backdrop-blur-md">${t.game}</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span class="text-[10px] font-bold px-2.5 py-1 rounded uppercase backdrop-blur-md ${t.status === 'EN COURS' ? 'bg-cyber-neon text-black font-black' : 'bg-cyber-black/80 text-cyber-muted border border-cyber-border'}">${t.status}</span>
+                        </div>
+                    </div>
+
+                    <div class="p-5 space-y-4">
+                        <div>
+                            <h3 class="font-bold text-white text-base group-hover:text-cyber-neon transition-colors">${t.title}</h3>
+                            <p class="text-cyber-muted text-xs mt-1">Organisateur : <strong class="text-white">${t.organizer}</strong></p>
+                        </div>
+
+                        <div class="border-t border-cyber-border pt-3 flex justify-between items-center text-xs">
+                            <div>
+                                <span class="text-cyber-muted block text-[10px]">PRIZE POOL (WAVE)</span>
+                                <span class="font-black text-cyber-neon font-mono">${t.prize.toLocaleString()} FCFA</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-cyber-muted block text-[10px]">PLACES</span>
+                                <span class="font-bold text-white">${t.teams.length}/${t.maxTeams}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderHomeTournaments() {
+            const ongoing = tournaments.filter(t => t.status === 'EN COURS');
+            const upcoming = tournaments.filter(t => t.status === 'À VENIR');
+            const past = tournaments.filter(t => t.status === 'TERMINÉ');
+
+            document.getElementById('home-ongoing-list').innerHTML = ongoing.map(createTournamentCard).join('') || '<p class="text-cyber-muted text-xs">Aucun tournoi en cours.</p>';
+            document.getElementById('home-upcoming-list').innerHTML = upcoming.map(createTournamentCard).join('') || '<p class="text-cyber-muted text-xs">Aucun tournoi à venir.</p>';
+            document.getElementById('home-past-list').innerHTML = past.map(createTournamentCard).join('') || '<p class="text-cyber-muted text-xs">Aucun tournoi terminé.</p>';
+        }
+
+        function renderTournamentsList() {
+            document.getElementById('tournaments-full-grid').innerHTML = tournaments.map(createTournamentCard).join('');
+        }
+
+        function applyFilters() {
+            const gameFilter = document.getElementById('filter-game').value;
+            const statusFilter = document.getElementById('filter-status').value;
+
+            const filtered = tournaments.filter(t => {
+                const matchGame = gameFilter === 'ALL' || t.game === gameFilter;
+                const matchStatus = statusFilter === 'ALL' || t.status === statusFilter;
+                return matchGame && matchStatus;
+            });
+
+            document.getElementById('tournaments-full-grid').innerHTML = filtered.map(createTournamentCard).join('');
+        }
+
+        // DETAIL TOURNOI & ARBITRAGE
+        function openTournamentDetail(id) {
+            activeTournamentId = id;
+            const t = tournaments.find(item => item.id === id);
+            if (!t) return;
+
+            document.getElementById('detail-title').innerText = t.title;
+            document.getElementById('detail-game-badge').innerText = t.game;
+            document.getElementById('detail-status-badge').innerText = t.status;
+            document.getElementById('detail-organizer').innerText = `Organisé par ${t.organizer}`;
+            document.getElementById('detail-prizepool').innerText = `${t.prize.toLocaleString()} FCFA`;
+            document.getElementById('detail-teams-count').innerText = `${t.teams.length} / ${t.maxTeams}`;
+
+            const defaultPoster = 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80';
+            document.getElementById('detail-poster-container').style.backgroundImage = `url('${t.poster || defaultPoster}')`;
+
+            const actionsDiv = document.getElementById('detail-actions');
+            actionsDiv.innerHTML = '';
+
+            const isAlreadyRegistered = currentUser && t.teams.some(team => team.name === currentUser.name);
+
+            if (t.status === 'À VENIR') {
+                if (!currentUser) {
+                    actionsDiv.innerHTML = `<button onclick="openAuthModal()" class="bg-cyber-neon text-black font-extrabold px-4 py-2 rounded-lg text-sm">Se connecter pour s'inscrire</button>`;
+                } else if (currentUser.role === 'JOUEUR' && !isAlreadyRegistered) {
+                    actionsDiv.innerHTML = `<button onclick="joinTournament('${t.id}')" class="bg-cyber-neon text-black font-extrabold px-4 py-2 rounded-lg text-sm hover:bg-cyber-neonDark">S'inscrire (${currentUser.name} - ${currentUser.mode})</button>`;
+                } else if (isAlreadyRegistered) {
+                    actionsDiv.innerHTML = `<span class="bg-cyber-black border border-cyber-neon text-cyber-neon font-bold px-4 py-2 rounded-lg text-sm"><i class="fa-solid fa-check mr-1"></i> Inscrit avec succès</span>`;
+                }
+            }
+
+            const isOrganizer = currentUser && (currentUser.name === t.organizer || currentUser.role === 'CREATEUR');
+            if (isOrganizer) {
+                document.getElementById('organizer-control-tag').classList.remove('hidden');
+            } else {
+                document.getElementById('organizer-control-tag').classList.add('hidden');
+            }
+
+            renderBracket(t, isOrganizer);
+
+            document.getElementById('detail-teams-list').innerHTML = t.teams.map(team => `
+                <div class="bg-cyber-black p-3 rounded-lg border border-cyber-border flex justify-between items-center text-xs">
+                    <div>
+                        <span class="font-bold text-white block">${team.name}</span>
+                        <span class="text-[10px] text-cyber-neon uppercase">${team.mode || 'Équipe'}</span>
+                    </div>
+                    <span class="text-cyber-muted font-mono"><i class="fa-solid fa-wallet text-cyber-neon mr-1"></i> ${team.wave}</span>
+                </div>
+            `).join('');
+
+            switchView('tournament-detail');
+        }
+
+        function renderBracket(t, isOrganizer) {
+            const matchesContainer = document.getElementById('bracket-matches');
+            matchesContainer.innerHTML = t.matches.map(m => `
+                <div class="bg-cyber-black border border-cyber-border p-4 rounded-xl space-y-3">
+                    <div class="text-[10px] font-bold text-cyber-neon uppercase tracking-widest">${m.round}</div>
+                    
+                    <div class="space-y-1 text-sm">
+                        <div class="flex justify-between items-center p-2 rounded ${m.winner === m.teamA ? 'bg-cyber-neon/20 font-bold border border-cyber-neon/40' : 'bg-cyber-card'}">
+                            <span class="text-white">${m.teamA}</span>
+                            <span class="font-mono font-bold">${m.scoreA !== null ? m.scoreA : '-'}</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded ${m.winner === m.teamB ? 'bg-cyber-neon/20 font-bold border border-cyber-neon/40' : 'bg-cyber-card'}">
+                            <span class="text-white">${m.teamB}</span>
+                            <span class="font-mono font-bold">${m.scoreB !== null ? m.scoreB : '-'}</span>
+                        </div>
+                    </div>
+
+                    ${isOrganizer && !m.winner && m.teamA !== 'En attente...' ? `
+                        <button onclick="setWinner('${t.id}', '${m.id}')" class="w-full bg-cyber-card border border-cyber-neon text-cyber-neon text-xs font-bold py-1.5 rounded hover:bg-cyber-neon hover:text-black transition-all">
+                            Définir Vainqueur (Arbitrage)
+                        </button>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+
+        function joinTournament(tourneyId) {
+            const t = tournaments.find(item => item.id === tourneyId);
+            if (!t) return;
+
+            if (t.teams.length >= t.maxTeams) {
+                alert("Ce tournoi est complet !");
+                return;
+            }
+
+            t.teams.push({
+                name: currentUser.name,
+                wave: currentUser.wave,
+                mode: currentUser.mode
+            });
+
+            saveToLocalStorage();
+            alert(`Félicitations ! Inscription validée pour ${currentUser.name}.`);
+            openTournamentDetail(tourneyId);
+            renderHomeTournaments();
+        }
+
+        function setWinner(tourneyId, matchId) {
+            const t = tournaments.find(item => item.id === tourneyId);
+            const m = t.matches.find(item => item.id === matchId);
+
+            const winnerName = prompt(`Entrez le nom exact du vainqueur (${m.teamA} ou ${m.teamB}):`, m.teamA);
+            if (winnerName === m.teamA || winnerName === m.teamB) {
+                m.winner = winnerName;
+                m.scoreA = winnerName === m.teamA ? 2 : 0;
+                m.scoreB = winnerName === m.teamB ? 2 : 0;
+
+                if (playersStats[winnerName]) {
+                    playersStats[winnerName].wins += 1;
+                    playersStats[winnerName].total += 1;
+                    playersStats[winnerName].earnings += Math.floor(t.prize / 2);
+                    playersStats[winnerName].lvl = Math.floor(playersStats[winnerName].wins / 2) + 1;
+                }
+
+                if (m.round === 'Grande Finale') {
+                    t.status = 'TERMINÉ';
+                }
+
+                saveToLocalStorage();
+                renderBracket(t, true);
+                renderHomeTournaments();
+                renderTournamentsList();
+                renderLeaderboards();
+                alert(`Vainqueur enregistré ! Notification Wave simulée pour le versement du gain.`);
+            }
+        }
+
+        // CRÉATION DE TOURNOI
+        function openCreateModal() {
+            if (!currentUser || currentUser.role !== 'CREATEUR') {
+                alert("Seuls les comptes Organisateurs peuvent créer un tournoi.");
+                return;
+            }
+            document.getElementById('modal-create').classList.remove('hidden');
+        }
+
+        function handleCreateTournament(e) {
+            e.preventDefault();
+            const title = document.getElementById('create-title').value;
+            const game = document.getElementById('create-game').value;
+            const prize = parseInt(document.getElementById('create-prize').value);
+            const poster = document.getElementById('create-poster').value;
+
+            const newT = {
+                id: 't' + (tournaments.length + 1),
+                title: title,
+                game: game,
+                status: 'À VENIR',
+                organizer: currentUser.name,
+                prize: prize,
+                maxTeams: 4,
+                poster: poster || 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80',
+                teams: [],
+                matches: [
+                    { id: 'm1', round: 'Demi-Finale
