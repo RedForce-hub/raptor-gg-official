@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAPTOR.GG | Plateforme eSport & Tournois Régionaux</title>
+    <title>SUNU ESPORT | La Plateforme eSport n°1 au Sénégal</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,15 +12,15 @@
             theme: {
                 extend: {
                     colors: {
-                        cyber: {
-                            black: 'var(--bg-black, #0a0a0c)',
-                            card: 'var(--bg-card, #121316)',
-                            border: 'var(--border-color, #1f2128)',
-                            hover: '#2a2d37',
+                        sunu: {
+                            black: 'var(--bg-black, #0a0c0b)',
+                            card: 'var(--bg-card, #121714)',
+                            border: 'var(--border-color, #1e2822)',
                             neon: 'var(--accent-color, #00FF66)',
-                            neonDark: 'var(--accent-dark, #00cc52)',
+                            gold: 'var(--gold-color, #EAB308)',
+                            red: '#FF3333',
                             text: '#f1f5f9',
-                            muted: '#64748b'
+                            muted: '#718096'
                         }
                     }
                 }
@@ -33,86 +33,99 @@
         :root {
             --accent-color: #00FF66;
             --accent-dark: #00cc52;
-            --accent-glow: rgba(0, 255, 102, 0.3);
-            --bg-black: #0a0a0c;
-            --bg-card: #121316;
-            --border-color: #1f2128;
-            --radius-style: 0.75rem;
+            --accent-glow: rgba(0, 255, 102, 0.35);
+            --gold-color: #EAB308;
+            --bg-black: #0a0c0b;
+            --bg-card: #121714;
+            --border-color: #1e2822;
+            --radius-style: 0.85rem;
         }
         body { background-color: var(--bg-black); color: #f1f5f9; font-family: 'Inter', sans-serif; }
-        .bg-cyber-card { background-color: var(--bg-card) !important; }
-        .border-cyber-border { border-color: var(--border-color) !important; }
+        .bg-sunu-card { background-color: var(--bg-card) !important; }
+        .border-sunu-border { border-color: var(--border-color) !important; }
         .rounded-xl, .rounded-2xl { border-radius: var(--radius-style) !important; }
-        .text-cyber-neon { color: var(--accent-color) !important; }
-        .bg-cyber-neon { background-color: var(--accent-color) !important; }
-        .border-cyber-neon { border-color: var(--accent-color) !important; }
-        .shadow-neon { box-shadow: 0 0 15px var(--accent-glow) !important; }
+        .text-sunu-neon { color: var(--accent-color) !important; }
+        .bg-sunu-neon { background-color: var(--accent-color) !important; }
+        .border-sunu-neon { border-color: var(--accent-color) !important; }
+        .shadow-neon { box-shadow: 0 0 20px var(--accent-glow) !important; }
+        
+        .senegal-pattern {
+            background-image: radial-gradient(rgba(0, 255, 102, 0.08) 1px, transparent 0), radial-gradient(rgba(234, 179, 8, 0.05) 1px, var(--bg-black) 0);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+        }
+        .flag-stripes {
+            background: linear-gradient(90deg, #00FF66 0%, #EAB308 50%, #FF3333 100%);
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col antialiased selection:bg-cyber-neon selection:text-black">
+<body class="min-h-screen flex flex-col antialiased selection:bg-sunu-neon selection:text-black senegal-pattern">
+
+    <!-- BARRE TRICOLORE NATIONALE -->
+    <div class="h-1.5 flag-stripes w-full"></div>
 
     <!-- HEADER / NAVIGATION -->
-    <header class="sticky top-0 z-40 bg-cyber-black/90 backdrop-blur-md border-b border-cyber-border">
+    <header class="sticky top-0 z-40 bg-sunu-black/90 backdrop-blur-md border-b border-sunu-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 
-                <!-- BRAND LOGO -->
+                <!-- LOGO & BRANDING -->
                 <div class="flex items-center space-x-3 cursor-pointer" id="logo-home">
-                    <div class="w-10 h-10 bg-cyber-neon flex items-center justify-center rounded-xl text-black text-xl font-black shadow-neon">
-                        <i class="fa-solid fa-dragon"></i>
+                    <div class="w-10 h-10 bg-sunu-neon flex items-center justify-center rounded-xl text-black text-xl font-black shadow-neon">
+                        <i class="fa-solid fa-star"></i>
                     </div>
-                    <span class="text-xl font-extrabold tracking-wider uppercase">
-                        RAPTOR<span class="text-cyber-neon">.GG</span>
-                    </span>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-extrabold tracking-wider uppercase leading-none">
+                            SUNU<span class="text-sunu-neon">.ESPORT</span>
+                        </span>
+                        <span class="text-[9px] text-sunu-gold font-bold tracking-widest uppercase mt-0.5">TERANGA GAMING</span>
+                    </div>
                 </div>
 
-                <!-- DESKTOP NAV -->
+                <!-- NAVIGATION PRINCIPALE -->
                 <nav class="hidden md:flex space-x-2">
-                    <button id="nav-btn-home" class="px-4 py-2 rounded-xl text-sm font-semibold transition-all text-cyber-neon bg-cyber-card border border-cyber-neon">
+                    <button id="nav-btn-home" class="px-4 py-2 rounded-xl text-sm font-semibold transition-all text-sunu-neon bg-sunu-card border border-sunu-neon">
                         <i class="fa-solid fa-house mr-2"></i><span data-i18n="nav_home">Accueil</span>
                     </button>
-                    <button id="nav-btn-tournaments" class="px-4 py-2 rounded-xl text-sm font-semibold text-cyber-muted hover:text-white transition-all">
+                    <button id="nav-btn-tournaments" class="px-4 py-2 rounded-xl text-sm font-semibold text-sunu-muted hover:text-white transition-all">
                         <i class="fa-solid fa-trophy mr-2"></i><span data-i18n="nav_tournaments">Tournois</span>
                     </button>
-                    <button id="nav-btn-community" class="px-4 py-2 rounded-xl text-sm font-semibold text-cyber-muted hover:text-white transition-all">
-                        <i class="fa-solid fa-users mr-2"></i><span data-i18n="nav_community">Classements</span>
+                    <button id="nav-btn-community" class="px-4 py-2 rounded-xl text-sm font-semibold text-sunu-muted hover:text-white transition-all">
+                        <i class="fa-solid fa-ranking-star mr-2"></i><span data-i18n="nav_community">Classements</span>
                     </button>
                 </nav>
 
-                <!-- USER ACTIONS & UTILS -->
+                <!-- BOUTONS D'ACTION ET LANGUES -->
                 <div class="flex items-center space-x-3">
-                    <!-- SÉLECTEUR DE LANGUE -->
-                    <select id="language-selector" class="bg-cyber-card border border-cyber-border text-white text-xs rounded-xl px-2 py-2 outline-none focus:border-cyber-neon cursor-pointer">
+                    <select id="language-selector" class="bg-sunu-card border border-sunu-border text-white text-xs rounded-xl px-2.5 py-2 outline-none focus:border-sunu-neon cursor-pointer">
                         <option value="fr">🇫🇷 FR</option>
-                        <option value="wo">🇸🇳 WO</option>
+                        <option value="wo">🇸🇳 WO (Wolof)</option>
                         <option value="en">🇬🇧 EN</option>
                     </select>
 
-                    <!-- BOUTON PERSONNALISATION DA -->
-                    <button id="btn-customizer" title="Personnaliser le Design" class="bg-cyber-card border border-cyber-border text-cyber-neon px-3 py-2 rounded-xl text-sm hover:border-cyber-neon transition-all">
+                    <button id="btn-customizer" title="Studio DA" class="bg-sunu-card border border-sunu-border text-sunu-gold px-3 py-2 rounded-xl text-sm hover:border-sunu-gold transition-all">
                         <i class="fa-solid fa-palette"></i>
                     </button>
 
-                    <!-- BADGE PROFIL -->
-                    <div id="user-profile-badge" class="hidden items-center space-x-2 bg-cyber-card border border-cyber-border px-3 py-1.5 rounded-xl">
-                        <div class="w-7 h-7 rounded-full bg-cyber-black text-cyber-neon border border-cyber-neon flex items-center justify-center text-xs font-bold" id="user-avatar-icon">
-                            <i class="fa-solid fa-dragon"></i>
+                    <div id="user-profile-badge" class="hidden items-center space-x-2 bg-sunu-card border border-sunu-border px-3 py-1.5 rounded-xl">
+                        <div class="w-7 h-7 rounded-full bg-sunu-black text-sunu-neon border border-sunu-neon flex items-center justify-center text-xs font-bold" id="user-avatar-icon">
+                            <i class="fa-solid fa-star"></i>
                         </div>
                         <div class="text-xs">
                             <div class="font-bold text-white flex items-center gap-1.5">
                                 <span id="user-display-name">Joueur</span>
-                                <span id="user-display-lvl" class="bg-cyber-neon text-black text-[9px] font-black px-1.5 py-0.5 rounded">LVL 1</span>
+                                <span id="user-display-lvl" class="bg-sunu-neon text-black text-[9px] font-black px-1.5 py-0.5 rounded">LVL 1</span>
                             </div>
-                            <div class="text-[10px] text-cyber-neon uppercase font-semibold" id="user-display-role">JOUEUR</div>
+                            <div class="text-[10px] text-sunu-gold uppercase font-semibold" id="user-display-role">JOUEUR</div>
                         </div>
                     </div>
 
-                    <button id="btn-auth-open" class="bg-cyber-neon text-black font-bold px-4 py-2 rounded-xl text-sm transition-all hover:opacity-90 shadow-neon">
+                    <button id="btn-auth-open" class="bg-sunu-neon text-black font-extrabold px-4 py-2 rounded-xl text-sm transition-all hover:opacity-90 shadow-neon">
                         <span data-i18n="btn_login">Se Connecter</span>
                     </button>
 
-                    <button id="btn-create-open" class="hidden bg-cyber-card border border-cyber-neon text-cyber-neon font-bold px-4 py-2 rounded-xl text-sm transition-all hover:bg-cyber-neon hover:text-black">
-                        <i class="fa-solid fa-plus mr-1"></i> <span data-i18n="btn_create">Créer</span>
+                    <button id="btn-create-open" class="hidden bg-sunu-card border border-sunu-neon text-sunu-neon font-bold px-4 py-2 rounded-xl text-sm transition-all hover:bg-sunu-neon hover:text-black">
+                        <i class="fa-solid fa-plus mr-1"></i> <span data-i18n="btn_create">Créer Tournoi</span>
                     </button>
                 </div>
             </div>
@@ -122,67 +135,68 @@
     <!-- MAIN CONTAINER -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        <!-- VIEW: ACCUEIL -->
+        <!-- VUE : ACCUEIL -->
         <section id="view-home" class="space-y-10">
-            <div class="relative bg-cyber-card border border-cyber-border rounded-2xl p-6 sm:p-10 overflow-hidden">
-                <div class="absolute right-0 top-0 bottom-0 w-1/2 opacity-10 pointer-events-none hidden md:flex items-center justify-center text-cyber-neon text-9xl">
-                    <i class="fa-solid fa-dragon"></i>
+            <div class="relative bg-sunu-card border border-sunu-border rounded-2xl p-6 sm:p-10 overflow-hidden">
+                <div class="absolute right-0 top-0 bottom-0 w-1/2 opacity-15 pointer-events-none hidden md:flex items-center justify-center text-sunu-neon text-9xl">
+                    <i class="fa-solid fa-mask"></i>
                 </div>
-                <div class="relative z-10 max-w-2xl">
-                    <span class="inline-block bg-cyber-card border border-cyber-neon text-cyber-neon text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4">
-                        <i class="fa-solid fa-bolt mr-1"></i> <span data-i18n="hero_badge">Plateforme eSport & Jeux Mobiles Régionale</span>
+                <div class="relative z-10 max-w-2xl space-y-4">
+                    <span class="inline-flex items-center gap-2 bg-sunu-black/80 border border-sunu-gold text-sunu-gold text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-widest">
+                        <i class="fa-solid fa-bolt text-sunu-neon"></i> <span data-i18n="hero_badge">Communauté eSport & Mobile Gaming Sénégal</span>
                     </span>
-                    <h1 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mb-4">
-                        <span data-i18n="hero_title_1">Rejoins l'élite de ta</span> <span class="text-cyber-neon" data-i18n="hero_title_2">région</span>
+                    <h1 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+                        <span data-i18n="hero_title_1">Deviens le champion du</span> <span class="text-sunu-neon" data-i18n="hero_title_2">Sénégal & de la Région</span>
                     </h1>
-                    <p class="text-cyber-muted text-base sm:text-lg mb-6" data-i18n="hero_desc">
-                        Affronte les meilleurs sur Mobile Legends, CODM, Free Fire, Valorant, EA FC 24... Gagne tes Prize Pools via Wave.
+                    <p class="text-sunu-muted text-base sm:text-lg" data-i18n="hero_desc">
+                        Organise et participe à des tournois communautaires sur Mobile Legends, Free Fire, CODM, EA FC. Gagne tes cashprizes via Wave et Orange Money !
                     </p>
-                    <div class="flex flex-wrap gap-3">
-                        <button id="hero-btn-explore" class="bg-cyber-neon text-black font-extrabold px-6 py-3 rounded-xl text-sm transition-all hover:opacity-90">
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <button id="hero-btn-explore" class="bg-sunu-neon text-black font-extrabold px-6 py-3 rounded-xl text-sm transition-all hover:opacity-90 shadow-neon">
                             <span data-i18n="hero_explore">Explorer les Tournois</span>
                         </button>
-                        <button id="hero-btn-account" class="bg-cyber-card border border-cyber-border text-white font-bold px-6 py-3 rounded-xl text-sm hover:border-cyber-neon transition-all">
-                            <span data-i18n="hero_account">Créer un Compte</span>
+                        <button id="hero-btn-account" class="bg-sunu-card border border-sunu-border text-white font-bold px-6 py-3 rounded-xl text-sm hover:border-sunu-neon transition-all">
+                            <span data-i18n="hero_account">Rejoindre la Communauté</span>
                         </button>
                     </div>
                 </div>
             </div>
 
+            <!-- SECTIONS DE TOURNOIS -->
             <div class="space-y-8">
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
-                        <span class="w-3 h-3 rounded-full bg-cyber-neon animate-ping"></span>
-                        <h2 class="text-xl font-black uppercase tracking-wider text-white" data-i18n="sec_ongoing">Tournois En Cours</h2>
+                        <span class="w-3 h-3 rounded-full bg-sunu-neon animate-ping"></span>
+                        <h2 class="text-xl font-black uppercase tracking-wider text-white" data-i18n="sec_ongoing">Tournois En Cours (Direct)</h2>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="home-ongoing-list"></div>
                 </div>
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
-                        <i class="fa-solid fa-calendar-days text-cyber-neon"></i>
-                        <h2 class="text-xl font-black uppercase tracking-wider text-white" data-i18n="sec_upcoming">Tournois À Venir</h2>
+                        <i class="fa-solid fa-calendar-days text-sunu-gold"></i>
+                        <h2 class="text-xl font-black uppercase tracking-wider text-white" data-i18n="sec_upcoming">Prochains Tournois À Venir</h2>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="home-upcoming-list"></div>
                 </div>
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
-                        <i class="fa-solid fa-flag-checkered text-cyber-muted"></i>
-                        <h2 class="text-xl font-black uppercase tracking-wider text-white" data-i18n="sec_past">Récemment Terminés</h2>
+                        <i class="fa-solid fa-flag-checkered text-sunu-muted"></i>
+                        <h2 class="text-xl font-black uppercase tracking-wider text-white" data-i18n="sec_past">Historique des Championnats</h2>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="home-past-list"></div>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW: LISTE DES TOURNOIS -->
+        <!-- VUE : CATALOGUE DES TOURNOIS -->
         <section id="view-tournaments" class="hidden space-y-6">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-cyber-border pb-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-sunu-border pb-6">
                 <div>
-                    <h1 class="text-2xl font-black uppercase tracking-wider" data-i18n="tournaments_title">Tous les Tournois</h1>
-                    <p class="text-cyber-muted text-sm" data-i18n="tournaments_subtitle">Filtrez et rejoignez les compétitions régionales.</p>
+                    <h1 class="text-2xl font-black uppercase tracking-wider" data-i18n="tournaments_title">Catalogue des Tournois</h1>
+                    <p class="text-sunu-muted text-sm" data-i18n="tournaments_subtitle">Filtrez selon vos jeux favoris et vos modes de paiement (Wave / OM).</p>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <select id="filter-game" class="bg-cyber-card border border-cyber-border text-white text-sm rounded-xl p-2.5 outline-none focus:border-cyber-neon">
+                    <select id="filter-game" class="bg-sunu-card border border-sunu-border text-white text-sm rounded-xl p-2.5 outline-none focus:border-sunu-neon">
                         <option value="ALL">Tous les jeux</option>
                         <option value="MOBILE LEGENDS">Mobile Legends</option>
                         <option value="CODM">Call of Duty Mobile</option>
@@ -192,7 +206,7 @@
                         <option value="FOOT 7v7">Foot 7v7 Local</option>
                         <option value="STREET FIGHTER 6">Street Fighter 6</option>
                     </select>
-                    <select id="filter-status" class="bg-cyber-card border border-cyber-border text-white text-sm rounded-xl p-2.5 outline-none focus:border-cyber-neon">
+                    <select id="filter-status" class="bg-sunu-card border border-sunu-border text-white text-sm rounded-xl p-2.5 outline-none focus:border-sunu-neon">
                         <option value="ALL">Tous les statuts</option>
                         <option value="EN COURS">En cours</option>
                         <option value="À VENIR">À venir</option>
@@ -203,52 +217,52 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="tournaments-full-grid"></div>
         </section>
 
-        <!-- VIEW: DÉTAIL TOURNOI -->
+        <!-- VUE : DÉTAILS TOURNOI & BRACKET -->
         <section id="view-tournament-detail" class="hidden space-y-8">
-            <button id="btn-back-tournaments" class="text-cyber-muted hover:text-cyber-neon text-sm font-bold flex items-center gap-2 mb-4">
+            <button id="btn-back-tournaments" class="text-sunu-muted hover:text-sunu-neon text-sm font-bold flex items-center gap-2 mb-4">
                 <i class="fa-solid fa-arrow-left"></i> <span data-i18n="back_tournaments">Retour aux tournois</span>
             </button>
-            <div class="bg-cyber-card border border-cyber-border rounded-2xl overflow-hidden space-y-6">
+            <div class="bg-sunu-card border border-sunu-border rounded-2xl overflow-hidden space-y-6">
                 <div id="detail-poster-container" class="w-full h-48 sm:h-64 bg-cover bg-center relative flex items-end p-6">
-                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-card via-cyber-card/40 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-sunu-card via-sunu-card/40 to-transparent"></div>
                     <div class="relative z-10 flex flex-col">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span id="detail-game-badge" class="bg-cyber-neon text-black text-xs font-black px-3 py-1 rounded uppercase"></span>
-                            <span id="detail-status-badge" class="text-xs font-bold px-3 py-1 rounded uppercase bg-cyber-card border border-cyber-border text-cyber-muted"></span>
+                            <span id="detail-game-badge" class="bg-sunu-neon text-black text-xs font-black px-3 py-1 rounded uppercase"></span>
+                            <span id="detail-status-badge" class="text-xs font-bold px-3 py-1 rounded uppercase bg-sunu-card border border-sunu-border text-sunu-muted"></span>
                         </div>
                         <h1 id="detail-title" class="text-2xl sm:text-4xl font-black uppercase tracking-wider text-white"></h1>
-                        <p id="detail-organizer" class="text-cyber-muted text-xs mt-1"></p>
+                        <p id="detail-organizer" class="text-sunu-muted text-xs mt-1"></p>
                     </div>
                 </div>
                 <div class="p-6 sm:p-8 pt-0 space-y-6">
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <div class="text-cyber-muted text-sm">Gestion des affrontements et suivi en direct.</div>
+                        <div class="text-sunu-muted text-sm">Suivi des scores et gestion des affrontements.</div>
                         <div id="detail-actions" class="flex flex-wrap gap-3"></div>
                     </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-cyber-border pt-6">
-                        <div class="bg-cyber-card p-4 rounded-xl border border-cyber-border">
-                            <div class="text-cyber-muted text-xs uppercase font-bold">Prize Pool (Wave)</div>
-                            <div id="detail-prizepool" class="text-xl font-black text-cyber-neon mt-1">0 FCFA</div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-sunu-border pt-6">
+                        <div class="bg-sunu-card p-4 rounded-xl border border-sunu-border">
+                            <div class="text-sunu-muted text-xs uppercase font-bold">Prize Pool</div>
+                            <div id="detail-prizepool" class="text-xl font-black text-sunu-neon mt-1">0 FCFA</div>
                         </div>
-                        <div class="bg-cyber-card p-4 rounded-xl border border-cyber-border">
-                            <div class="text-cyber-muted text-xs uppercase font-bold">Format</div>
+                        <div class="bg-sunu-card p-4 rounded-xl border border-sunu-border">
+                            <div class="text-sunu-muted text-xs uppercase font-bold">Format</div>
                             <div id="detail-format" class="text-base font-bold text-white mt-1">Élimination directe</div>
                         </div>
-                        <div class="bg-cyber-card p-4 rounded-xl border border-cyber-border">
-                            <div class="text-cyber-muted text-xs uppercase font-bold">Participants</div>
+                        <div class="bg-sunu-card p-4 rounded-xl border border-sunu-border">
+                            <div class="text-sunu-muted text-xs uppercase font-bold">Participants</div>
                             <div id="detail-teams-count" class="text-base font-bold text-white mt-1">0 / 0</div>
                         </div>
-                        <div class="bg-cyber-card p-4 rounded-xl border border-cyber-border">
-                            <div class="text-cyber-muted text-xs uppercase font-bold">Paiement Wave</div>
-                            <div id="detail-wave-status" class="text-base font-bold text-cyber-neon mt-1">Sécurisé</div>
+                        <div class="bg-sunu-card p-4 rounded-xl border border-sunu-border">
+                            <div class="text-sunu-muted text-xs uppercase font-bold">Paiement Mobile</div>
+                            <div id="detail-wave-status" class="text-base font-bold text-sunu-gold mt-1">Wave / OM</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 space-y-6">
-                <div class="flex justify-between items-center border-b border-cyber-border pb-4">
+            <div class="bg-sunu-card border border-sunu-border rounded-2xl p-6 space-y-6">
+                <div class="flex justify-between items-center border-b border-sunu-border pb-4">
                     <h2 class="text-lg font-black uppercase tracking-wider">Arbre de Compétition (Bracket)</h2>
-                    <span id="organizer-control-tag" class="hidden text-xs bg-cyber-neon text-black font-extrabold px-3 py-1 rounded-full uppercase">
+                    <span id="organizer-control-tag" class="hidden text-xs bg-sunu-gold text-black font-extrabold px-3 py-1 rounded-full uppercase">
                         <i class="fa-solid fa-shield-halved mr-1"></i> Panneau d'Arbitrage
                     </span>
                 </div>
@@ -256,53 +270,53 @@
                     <div class="min-w-[700px] grid grid-cols-3 gap-6 items-center" id="bracket-matches"></div>
                 </div>
             </div>
-            <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 space-y-4">
-                <h2 class="text-lg font-black uppercase tracking-wider">Participants & Comptes Wave</h2>
+            <div class="bg-sunu-card border border-sunu-border rounded-2xl p-6 space-y-4">
+                <h2 class="text-lg font-black uppercase tracking-wider">Participants Inscrits</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3" id="detail-teams-list"></div>
             </div>
         </section>
 
-        <!-- VIEW: COMMUNAUTÉ & CLASSEMENTS -->
+        <!-- VUE : CLASSEMENTS -->
         <section id="view-community" class="hidden space-y-8">
-            <div class="border-b border-cyber-border pb-6">
+            <div class="border-b border-sunu-border pb-6">
                 <h1 class="text-2xl font-black uppercase tracking-wider" data-i18n="comm_title">Classements & Niveaux</h1>
-                <p class="text-cyber-muted text-sm" data-i18n="comm_subtitle">Le tableau d'honneur de la communauté régionale.</p>
+                <p class="text-sunu-muted text-sm" data-i18n="comm_subtitle">Le tableau d'honneur de la communauté.</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 space-y-4">
+                <div class="bg-sunu-card border border-sunu-border rounded-2xl p-6 space-y-4">
                     <h2 class="text-lg font-black uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-gamepad text-cyber-neon"></i> Top Joueurs / Équipes
+                        <i class="fa-solid fa-gamepad text-sunu-neon"></i> Top Gamers / Rosters
                     </h2>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="text-cyber-muted text-xs uppercase border-b border-cyber-border">
+                                <tr class="text-sunu-muted text-xs uppercase border-b border-sunu-border">
                                     <th class="py-3 px-2">Rang</th>
                                     <th class="py-3 px-2">Joueur</th>
                                     <th class="py-3 px-2">Niveau</th>
                                     <th class="py-3 px-2">Victoires</th>
-                                    <th class="py-3 px-2 text-right">Gains Wave</th>
+                                    <th class="py-3 px-2 text-right">Gains</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-cyber-border text-sm font-medium" id="leaderboard-players-body"></tbody>
+                            <tbody class="divide-y divide-sunu-border text-sm font-medium" id="leaderboard-players-body"></tbody>
                         </table>
                     </div>
                 </div>
-                <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 space-y-4">
+                <div class="bg-sunu-card border border-sunu-border rounded-2xl p-6 space-y-4">
                     <h2 class="text-lg font-black uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-trophy text-cyber-neon"></i> Top Organisateurs
+                        <i class="fa-solid fa-trophy text-sunu-gold"></i> Top Organisateurs
                     </h2>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="text-cyber-muted text-xs uppercase border-b border-cyber-border">
+                                <tr class="text-sunu-muted text-xs uppercase border-b border-sunu-border">
                                     <th class="py-3 px-2">Rang</th>
                                     <th class="py-3 px-2">Créateur</th>
                                     <th class="py-3 px-2">Tournois</th>
                                     <th class="py-3 px-2 text-right">Prize Pool Distribué</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-cyber-border text-sm font-medium" id="leaderboard-creators-body"></tbody>
+                            <tbody class="divide-y divide-sunu-border text-sm font-medium" id="leaderboard-creators-body"></tbody>
                         </table>
                     </div>
                 </div>
@@ -312,118 +326,110 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="border-t border-cyber-border bg-cyber-card py-6 mt-10">
-        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-cyber-muted space-y-3">
-            <p>&copy; 2026 RAPTOR.GG - Plateforme eSport & Tournois Régionaux.</p>
+    <footer class="border-t border-sunu-border bg-sunu-card py-6 mt-10">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-sunu-muted space-y-3">
+            <p>&copy; 2026 SUNU.ESPORT - Plateforme eSport Communautaire.</p>
             <div>
                 <button id="btn-reset-data" class="bg-red-900/30 text-red-400 border border-red-700/50 hover:bg-red-600 hover:text-white px-3 py-1 rounded-xl text-[11px] font-bold transition-all">
-                    <i class="fa-solid fa-rotate-left mr-1"></i> <span data-i18n="reset_btn">Réinitialiser les données</span>
+                    <i class="fa-solid fa-rotate-left mr-1"></i> <span data-i18n="reset_btn">Réinitialiser la plateforme</span>
                 </button>
             </div>
         </div>
     </footer>
 
-    <!-- MODAL: PERSONNALISATION DE LA DA & THÈMES -->
+    <!-- MODAL : STUDIO PERSONNALISATION -->
     <div id="modal-customizer" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-cyber-card border border-cyber-border rounded-2xl max-w-md w-full p-6 space-y-6 relative">
-            <button class="modal-close-customizer absolute top-4 right-4 text-cyber-muted hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <div class="bg-sunu-card border border-sunu-border rounded-2xl max-w-md w-full p-6 space-y-6 relative">
+            <button class="modal-close-customizer absolute top-4 right-4 text-sunu-muted hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
             <div>
                 <h3 class="text-xl font-black uppercase tracking-wider" data-i18n="cust_title">Studio de Personnalisation</h3>
-                <p class="text-cyber-muted text-xs mt-1" data-i18n="cust_subtitle">Modifiez l'apparence et le style visuel de Raptor.gg</p>
+                <p class="text-sunu-muted text-xs mt-1" data-i18n="cust_subtitle">Personnalisez l'ambiance et la palette visuelle.</p>
             </div>
             <div class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-cyber-muted uppercase mb-2" data-i18n="cust_palette">Palette de Couleurs</label>
+                    <label class="block text-xs font-bold text-sunu-muted uppercase mb-2" data-i18n="cust_palette">Thème & Couleurs</label>
                     <div class="grid grid-cols-4 gap-2">
-                        <button onclick="setTheme('default', '#00FF66', '#00cc52', 'rgba(0,255,102,0.3)')" class="p-3 rounded-xl bg-[#00FF66] text-black font-bold text-xs">Vert</button>
-                        <button onclick="setTheme('fire', '#FF3333', '#CC0000', 'rgba(255,51,51,0.3)')" class="p-3 rounded-xl bg-[#FF3333] text-black font-bold text-xs">Fire</button>
-                        <button onclick="setTheme('purple', '#A855F7', '#7E22CE', 'rgba(168,85,247,0.3)')" class="p-3 rounded-xl bg-[#A855F7] text-white font-bold text-xs">Electro</button>
-                        <button onclick="setTheme('cyan', '#06B6D4', '#0891B2', 'rgba(6,182,212,0.3)')" class="p-3 rounded-xl bg-[#06B6D4] text-black font-bold text-xs">Cyan</button>
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-cyber-muted uppercase mb-2" data-i18n="cust_bg">Ambiance de Fond</label>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="setBgMode('#0a0a0c', '#121316', '#1f2128')" class="p-3 rounded-xl bg-[#0a0a0c] border border-cyber-border text-white text-xs font-bold">Dark Pur</button>
-                        <button onclick="setBgMode('#121826', '#1e293b', '#334155')" class="p-3 rounded-xl bg-[#121826] border border-blue-500 text-white text-xs font-bold">Bleu Nuit</button>
+                        <button onclick="setTheme('default', '#00FF66', '#00cc52', 'rgba(0,255,102,0.35)')" class="p-3 rounded-xl bg-[#00FF66] text-black font-bold text-xs">Vert</button>
+                        <button onclick="setTheme('gold', '#EAB308', '#CA8A04', 'rgba(234,179,8,0.35)')" class="p-3 rounded-xl bg-[#EAB308] text-black font-bold text-xs">Or</button>
+                        <button onclick="setTheme('fire', '#FF3333', '#CC0000', 'rgba(255,51,51,0.35)')" class="p-3 rounded-xl bg-[#FF3333] text-white font-bold text-xs">Rouge</button>
+                        <button onclick="setTheme('purple', '#A855F7', '#7E22CE', 'rgba(168,85,247,0.35)')" class="p-3 rounded-xl bg-[#A855F7] text-white font-bold text-xs">Améthyste</button>
                     </div>
                 </div>
             </div>
-            <button class="modal-close-customizer w-full bg-cyber-neon text-black font-black py-3 rounded-xl text-sm hover:opacity-90 uppercase tracking-wider" data-i18n="cust_apply">
+            <button class="modal-close-customizer w-full bg-sunu-neon text-black font-black py-3 rounded-xl text-sm hover:opacity-90 uppercase tracking-wider" data-i18n="cust_apply">
                 Appliquer
             </button>
         </div>
     </div>
 
-    <!-- MODAL 1: AUTH & CHOIX DU RÔLE -->
+    <!-- MODAL : AUTH -->
     <div id="modal-auth" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-cyber-card border border-cyber-border rounded-2xl max-w-md w-full p-6 space-y-6 relative">
-            <button class="modal-close-auth absolute top-4 right-4 text-cyber-muted hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <div class="bg-sunu-card border border-sunu-border rounded-2xl max-w-md w-full p-6 space-y-6 relative">
+            <button class="modal-close-auth absolute top-4 right-4 text-sunu-muted hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
             <div class="text-center">
-                <h3 class="text-xl font-black uppercase tracking-wider" data-i18n="auth_title">Connexion RAPTOR.GG</h3>
-                <p class="text-cyber-muted text-xs mt-1" data-i18n="auth_subtitle">Définissez votre profil et votre avatar</p>
+                <h3 class="text-xl font-black uppercase tracking-wider" data-i18n="auth_title">Profil SUNU.ESPORT</h3>
+                <p class="text-sunu-muted text-xs mt-1" data-i18n="auth_subtitle">Rejoins l'élite et enregistre ton numéro</p>
             </div>
             <div class="grid grid-cols-2 gap-3">
-                <button type="button" id="role-btn-joueur" class="p-4 border border-cyber-neon bg-cyber-card rounded-xl text-center space-y-2 transition-all">
-                    <i class="fa-solid fa-gamepad text-2xl text-cyber-neon"></i>
-                    <div class="font-bold text-sm text-white" data-i18n="role_player">Joueur / Équipe</div>
+                <button type="button" id="role-btn-joueur" class="p-4 border border-sunu-neon bg-sunu-card rounded-xl text-center space-y-2 transition-all">
+                    <i class="fa-solid fa-gamepad text-2xl text-sunu-neon"></i>
+                    <div class="font-bold text-sm text-white" data-i18n="role_player">Gamer / Équipe</div>
                 </button>
-                <button type="button" id="role-btn-createur" class="p-4 border border-cyber-border bg-cyber-card rounded-xl text-center space-y-2 hover:border-cyber-neon transition-all">
-                    <i class="fa-solid fa-trophy text-2xl text-cyber-muted"></i>
+                <button type="button" id="role-btn-createur" class="p-4 border border-sunu-border bg-sunu-card rounded-xl text-center space-y-2 hover:border-sunu-neon transition-all">
+                    <i class="fa-solid fa-trophy text-2xl text-sunu-muted"></i>
                     <div class="font-bold text-sm text-white" data-i18n="role_creator">Organisateur</div>
                 </button>
             </div>
             <form id="form-login" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-cyber-muted uppercase mb-1" data-i18n="label_pseudo">Nom / Pseudo Esport</label>
-                    <input type="text" id="auth-username" required placeholder="Ex: DakarSnipers_99" class="w-full bg-cyber-card border border-cyber-border rounded-xl px-3 py-2 text-sm text-white outline-none focus:border-cyber-neon">
+                    <label class="block text-xs font-bold text-sunu-muted uppercase mb-1" data-i18n="label_pseudo">Pseudo Gamer / Nom d'Équipe</label>
+                    <input type="text" id="auth-username" required placeholder="Ex: DakarSnipers_221" class="w-full bg-sunu-card border border-sunu-border rounded-xl px-3 py-2 text-sm text-white outline-none focus:border-sunu-neon">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-cyber-muted uppercase mb-2" data-i18n="label_avatar">Choisir une Icône d'Avatar</label>
-                    <div class="flex justify-between gap-2 bg-cyber-card p-2 rounded-xl border border-cyber-border" id="avatar-selector">
-                        <button type="button" data-icon="fa-dragon" class="avatar-opt p-2 rounded border border-cyber-neon text-cyber-neon"><i class="fa-solid fa-dragon"></i></button>
-                        <button type="button" data-icon="fa-bolt" class="avatar-opt p-2 rounded border border-transparent text-cyber-muted hover:text-white"><i class="fa-solid fa-bolt"></i></button>
-                        <button type="button" data-icon="fa-shield-halved" class="avatar-opt p-2 rounded border border-transparent text-cyber-muted hover:text-white"><i class="fa-solid fa-shield-halved"></i></button>
-                        <button type="button" data-icon="fa-skull" class="avatar-opt p-2 rounded border border-transparent text-cyber-muted hover:text-white"><i class="fa-solid fa-skull"></i></button>
-                        <button type="button" data-icon="fa-crown" class="avatar-opt p-2 rounded border border-transparent text-cyber-muted hover:text-white"><i class="fa-solid fa-crown"></i></button>
+                    <label class="block text-xs font-bold text-sunu-muted uppercase mb-2" data-i18n="label_avatar">Choisir un Avatar</label>
+                    <div class="flex justify-between gap-2 bg-sunu-card p-2 rounded-xl border border-sunu-border" id="avatar-selector">
+                        <button type="button" data-icon="fa-star" class="avatar-opt p-2 rounded border border-sunu-neon text-sunu-neon"><i class="fa-solid fa-star"></i></button>
+                        <button type="button" data-icon="fa-bolt" class="avatar-opt p-2 rounded border border-transparent text-sunu-muted hover:text-white"><i class="fa-solid fa-bolt"></i></button>
+                        <button type="button" data-icon="fa-mask" class="avatar-opt p-2 rounded border border-transparent text-sunu-muted hover:text-white"><i class="fa-solid fa-mask"></i></button>
+                        <button type="button" data-icon="fa-crown" class="avatar-opt p-2 rounded border border-transparent text-sunu-muted hover:text-white"><i class="fa-solid fa-crown"></i></button>
                     </div>
                 </div>
                 <div id="mode-inscription-group" class="grid grid-cols-2 gap-2">
-                    <label class="cursor-pointer border border-cyber-border bg-cyber-card p-2.5 rounded-xl text-center text-xs font-bold text-white hover:border-cyber-neon flex items-center justify-center gap-2">
+                    <label class="cursor-pointer border border-sunu-border bg-sunu-card p-2.5 rounded-xl text-center text-xs font-bold text-white hover:border-sunu-neon flex items-center justify-center gap-2">
                         <input type="radio" name="playmode" value="Solo" checked> Solo (1v1)
                     </label>
-                    <label class="cursor-pointer border border-cyber-border bg-cyber-card p-2.5 rounded-xl text-center text-xs font-bold text-white hover:border-cyber-neon flex items-center justify-center gap-2">
-                        <input type="radio" name="playmode" value="Equipe"> <span data-i18n="mode_team">Équipe</span>
+                    <label class="cursor-pointer border border-sunu-border bg-sunu-card p-2.5 rounded-xl text-center text-xs font-bold text-white hover:border-sunu-neon flex items-center justify-center gap-2">
+                        <input type="radio" name="playmode" value="Equipe"> <span data-i18n="mode_team">Équipe (Squad)</span>
                     </label>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-cyber-muted uppercase mb-1" data-i18n="label_wave">Numéro Wave</label>
-                    <input type="text" id="auth-wave" placeholder="Ex: +221 77 000 00 00" class="w-full bg-cyber-card border border-cyber-border rounded-xl px-3 py-2 text-sm text-white outline-none focus:border-cyber-neon">
+                    <label class="block text-xs font-bold text-sunu-muted uppercase mb-1" data-i18n="label_wave">Numéro Wave / Orange Money</label>
+                    <input type="text" id="auth-wave" placeholder="Ex: +221 77 000 00 00" class="w-full bg-sunu-card border border-sunu-border rounded-xl px-3 py-2 text-sm text-white outline-none focus:border-sunu-neon">
                 </div>
-                <button type="submit" class="w-full bg-cyber-neon text-black font-black py-3 rounded-xl text-sm hover:opacity-90 uppercase tracking-wider" data-i18n="btn_validate">
-                    Valider le profil
+                <button type="submit" class="w-full bg-sunu-neon text-black font-black py-3 rounded-xl text-sm hover:opacity-90 uppercase tracking-wider" data-i18n="btn_validate">
+                    Valider le Profil
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- MODAL 2: CRÉER UN TOURNOI -->
+    <!-- MODAL : CRÉATION DE TOURNOIS -->
     <div id="modal-create" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-cyber-card border border-cyber-border rounded-2xl max-w-lg w-full p-6 space-y-6 relative max-h-[90vh] overflow-y-auto">
-            <button class="modal-close-create absolute top-4 right-4 text-cyber-muted hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <div class="bg-sunu-card border border-sunu-border rounded-2xl max-w-lg w-full p-6 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button class="modal-close-create absolute top-4 right-4 text-sunu-muted hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
             <div>
-                <h3 class="text-xl font-black uppercase tracking-wider" data-i18n="create_title">Organiser un Tournoi</h3>
-                <p class="text-cyber-muted text-xs" data-i18n="create_subtitle">Propulsez votre notoriété d'organisateur</p>
+                <h3 class="text-xl font-black uppercase tracking-wider" data-i18n="create_title">Créer un Tournoi</h3>
+                <p class="text-sunu-muted text-xs" data-i18n="create_subtitle">Fixe tes règles, ton Prize Pool et tes récompenses</p>
             </div>
             <form id="form-create-tournament" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-cyber-muted uppercase mb-1" data-i18n="create_tname">Titre du tournoi</label>
-                    <input type="text" id="create-title" required placeholder="Ex: Dakar Mobile Legends Cup" class="w-full bg-cyber-card border border-cyber-border rounded-xl px-3 py-2 text-sm text-white outline-none focus:border-cyber-neon">
+                    <label class="block text-xs font-bold text-sunu-muted uppercase mb-1" data-i18n="create_tname">Titre du Tournoi</label>
+                    <input type="text" id="create-title" required placeholder="Ex: Dakar Free Fire Championship" class="w-full bg-sunu-card border border-sunu-border rounded-xl px-3 py-2 text-sm text-white outline-none focus:border-sunu-neon">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-bold text-cyber-muted uppercase mb-1" data-i18n="create_game">Discipline</label>
-                        <select id="create-game" class="w-full bg-cyber-card border border-cyber-border text-white text-sm rounded-xl p-2.5 outline-none focus:border-cyber-neon">
+                        <label class="block text-xs font-bold text-sunu-muted uppercase mb-1" data-i18n="create_game">Discipline / Jeu</label>
+                        <select id="create-game" class="w-full bg-sunu-card border border-sunu-border text-white text-sm rounded-xl p-2.5 outline-none focus:border-sunu-neon">
                             <option value="MOBILE LEGENDS">Mobile Legends</option>
                             <option value="CODM">Call of Duty Mobile</option>
                             <option value="FREE FIRE">Free Fire</option>
@@ -434,94 +440,93 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-cyber-muted uppercase mb-1" data-i18n="create_prize">Prize Pool (FCFA)</label>
-                        <input type="number" id="create-prize" required placeholder="50000" class="w-full bg-cyber-card border border-cyber-border rounded-xl px-3 py-2 text-sm text-white outline-none focus:border-cyber-neon">
+                        <label class="block text-xs font-bold text-sunu-muted uppercase mb-1" data-i18n="create_prize">Prize Pool (FCFA)</label>
+                        <input type="number" id="create-prize" required placeholder="100000" class="w-full bg-sunu-card border border-sunu-border rounded-xl px-3 py-2 text-sm text-white outline-none focus:border-sunu-neon">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-cyber-muted uppercase mb-1" data-i18n="create_poster">URL de l'affiche / Poster</label>
-                    <input type="url" id="create-poster" placeholder="https://images.unsplash.com/..." class="w-full bg-cyber-card border border-cyber-border rounded-xl px-3 py-2 text-sm text-white outline-none focus:border-cyber-neon">
+                    <label class="block text-xs font-bold text-sunu-muted uppercase mb-1" data-i18n="create_poster">URL Affiche / Banner</label>
+                    <input type="url" id="create-poster" placeholder="https://images.unsplash.com/..." class="w-full bg-sunu-card border border-sunu-border rounded-xl px-3 py-2 text-sm text-white outline-none focus:border-sunu-neon">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-cyber-muted uppercase mb-1" data-i18n="create_wave">Numéro Wave Organisateur</label>
-                    <input type="text" id="create-wave" required placeholder="+221 77 123 45 67" class="w-full bg-cyber-card border border-cyber-border rounded-xl px-3 py-2 text-sm text-white outline-none focus:border-cyber-neon">
+                    <label class="block text-xs font-bold text-sunu-muted uppercase mb-1" data-i18n="create_wave">Numéro Wave / OM du Marchand</label>
+                    <input type="text" id="create-wave" required placeholder="+221 77 123 45 67" class="w-full bg-sunu-card border border-sunu-border rounded-xl px-3 py-2 text-sm text-white outline-none focus:border-sunu-neon">
                 </div>
-                <button type="submit" class="w-full bg-cyber-neon text-black font-black py-3 rounded-xl text-sm hover:opacity-90 uppercase tracking-wider" data-i18n="create_submit">
-                    Lancer le Tournoi
+                <button type="submit" class="w-full bg-sunu-neon text-black font-black py-3 rounded-xl text-sm hover:opacity-90 uppercase tracking-wider" data-i18n="create_submit">
+                    Publier le Tournoi
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- SCRIPT APPLICATION JAVASCRIPT -->
+    <!-- SCRIPT JAVASCRIPT PRINCIPAL -->
     <script>
-        // TRADUCTIONS MULTILINGUES (FR, WO, EN)
         const translations = {
             fr: {
                 nav_home: "Accueil", nav_tournaments: "Tournois", nav_community: "Classements",
-                btn_login: "Se Connecter", btn_create: "Créer",
-                hero_badge: "Plateforme eSport & Jeux Mobiles Régionale",
-                hero_title_1: "Rejoins l'élite de ta", hero_title_2: "région",
-                hero_desc: "Affronte les meilleurs sur Mobile Legends, CODM, Free Fire, Valorant, EA FC 24... Gagne tes Prize Pools via Wave.",
-                hero_explore: "Explorer les Tournois", hero_account: "Créer un Compte",
-                sec_ongoing: "Tournois En Cours", sec_upcoming: "Tournois À Venir", sec_past: "Récemment Terminés",
-                tournaments_title: "Tous les Tournois", tournaments_subtitle: "Filtrez et rejoignez les compétitions régionales.",
+                btn_login: "Se Connecter", btn_create: "Créer Tournoi",
+                hero_badge: "Communauté eSport & Mobile Gaming Sénégal",
+                hero_title_1: "Deviens le champion du", hero_title_2: "Sénégal & de la Région",
+                hero_desc: "Organise et participe à des tournois communautaires sur Mobile Legends, Free Fire, CODM, EA FC. Gagne tes cashprizes via Wave et Orange Money !",
+                hero_explore: "Explorer les Tournois", hero_account: "Rejoindre la Communauté",
+                sec_ongoing: "Tournois En Cours (Direct)", sec_upcoming: "Prochains Tournois À Venir", sec_past: "Historique des Championnats",
+                tournaments_title: "Catalogue des Tournois", tournaments_subtitle: "Filtrez selon vos jeux favoris et vos modes de paiement (Wave / OM).",
                 back_tournaments: "Retour aux tournois",
-                comm_title: "Classements & Niveaux", comm_subtitle: "Le tableau d'honneur de la communauté régionale.",
-                reset_btn: "Réinitialiser les données",
-                cust_title: "Studio de Personnalisation", cust_subtitle: "Modifiez l'apparence et le style visuel de Raptor.gg",
-                cust_palette: "Palette de Couleurs", cust_bg: "Ambiance de Fond", cust_apply: "Appliquer",
-                auth_title: "Connexion RAPTOR.GG", auth_subtitle: "Définissez votre profil et votre avatar",
-                role_player: "Joueur / Équipe", role_creator: "Organisateur",
-                label_pseudo: "Nom / Pseudo Esport", label_avatar: "Choisir une Icône d'Avatar", mode_team: "Équipe",
-                label_wave: "Numéro Wave", btn_validate: "Valider le profil",
-                create_title: "Organiser un Tournoi", create_subtitle: "Propulsez votre notoriété d'organisateur",
-                create_tname: "Titre du tournoi", create_game: "Discipline", create_prize: "Prize Pool (FCFA)",
-                create_poster: "URL de l'affiche / Poster", create_wave: "Numéro Wave Organisateur", create_submit: "Lancer le Tournoi"
+                comm_title: "Classements & Niveaux", comm_subtitle: "Le tableau d'honneur de la communauté.",
+                reset_btn: "Réinitialiser la plateforme",
+                cust_title: "Studio de Personnalisation", cust_subtitle: "Personnalisez l'ambiance et la palette visuelle.",
+                cust_palette: "Thème & Couleurs", cust_apply: "Appliquer",
+                auth_title: "Profil SUNU.ESPORT", auth_subtitle: "Rejoins l'élite et enregistre ton numéro",
+                role_player: "Gamer / Équipe", role_creator: "Organisateur",
+                label_pseudo: "Pseudo Gamer / Nom d'Équipe", label_avatar: "Choisir un Avatar", mode_team: "Équipe (Squad)",
+                label_wave: "Numéro Wave / Orange Money", btn_validate: "Valider le Profil",
+                create_title: "Créer un Tournoi", create_subtitle: "Fixe tes règles, ton Prize Pool et tes récompenses",
+                create_tname: "Titre du Tournoi", create_game: "Discipline / Jeu", create_prize: "Prize Pool (FCFA)",
+                create_poster: "URL Affiche / Banner", create_wave: "Numéro Wave / OM du Marchand", create_submit: "Publier le Tournoi"
             },
             wo: {
                 nav_home: "Kër", nav_tournaments: "Tournoi yi", nav_community: "Tolluwaay",
-                btn_login: "Dougal", btn_create: "Sos",
-                hero_badge: "Platforme eSport & Jeux Mobiles Sénégal",
-                hero_title_1: "Jël sa bopp ci", hero_title_2: "zone bi",
-                hero_desc: "Bërekk ak ñiy raw ci Mobile Legends, CODM, Free Fire, Valorant... Jot sa xaalis ak Wave.",
-                hero_explore: "Seet Tournoi yi", hero_account: "Sos Compte",
+                btn_login: "Dougal", btn_create: "Sos Tournoi",
+                hero_badge: "Communauté eSport & Jeux Mobiles",
+                hero_title_1: "Nekk Champion ci", hero_title_2: "Sénégal & Zone bi",
+                hero_desc: "Duggale sa bopp ci communauté eSport bi. Bërekk ak ñiy raw ci Mobile Legends, Free Fire, CODM... Jot sa xaalis ak Wave walla Orange Money !",
+                hero_explore: "Seet Tournoi yi", hero_account: "Bëgg na dugg ci Communauté",
                 sec_ongoing: "Tournoi yi nekk ci dëgër", sec_upcoming: "Tournoi yi ñëw", sec_past: "Tournoi yi jeex",
-                tournaments_title: "Tournoi yépp", tournaments_subtitle: "Tànnal te dugg ci tournoi yi.",
+                tournaments_title: "Limu Tournoi yi", tournaments_subtitle: "Tànnal sa jeux yi ak numey faye.",
                 back_tournaments: "Dellu ci tournoi yi",
-                comm_title: "Tolluwaay & Niveau", comm_subtitle: "Limu nit ñu baax ci region bi.",
+                comm_title: "Tolluwaay", comm_subtitle: "Njewriñ yi fi gënë rëy.",
                 reset_btn: "Far datos yi",
-                cust_title: "Studio de Personnalisation", cust_subtitle: "Wayël melokaanu site bi",
-                cust_palette: "Couleur yi", cust_bg: "Melokaanu Fonde bi", cust_apply: "Jëflandiko",
-                auth_title: "Duggal sa Tour", auth_subtitle: "Tànnal sa profil ak sa avatar",
-                role_player: "Joueur / Équipe", role_creator: "Organisateur",
-                label_pseudo: "Tur / Pseudo Esport", label_avatar: "Tànnal Avatar", mode_team: "Equipe",
-                label_wave: "Nimero Wave", btn_validate: "Watale profil bi",
-                create_title: "Sos Tournoi", create_subtitle: "Saytu sa tournoi",
+                cust_title: "Studio de Personnalisation", cust_subtitle: "Melokaanu couleur.",
+                cust_palette: "Couleur yi", cust_apply: "Jëflandiko",
+                auth_title: "Profil SUNU.ESPORT", auth_subtitle: "Bindal sa numero",
+                role_player: "Gamer / Equipe", role_creator: "Organisateur",
+                label_pseudo: "Tur / Pseudo Gamer", label_avatar: "Tànnal Avatar", mode_team: "Equipe",
+                label_wave: "Numero Wave / OM", btn_validate: "Watale Profil bi",
+                create_title: "Sos Tournoi", create_subtitle: "Tànnal sa prize pool",
                 create_tname: "Tur bi", create_game: "Jeux bi", create_prize: "Prize Pool (FCFA)",
-                create_poster: "Link Affiche bi", create_wave: "Nimero Wave Organisateur", create_submit: "Taki Tournoi bi"
+                create_poster: "Link Affiche bi", create_wave: "Numero Wave Organisateur", create_submit: "Publier Tournoi bi"
             },
             en: {
-                nav_home: "Home", nav_tournaments: "Tournaments", nav_community: "Leaderboard",
-                btn_login: "Sign In", btn_create: "Create",
-                hero_badge: "Regional eSport & Mobile Gaming Platform",
-                hero_title_1: "Join the elite of your", hero_title_2: "region",
-                hero_desc: "Compete in Mobile Legends, CODM, Free Fire, Valorant, EA FC 24... Win Prize Pools via Wave.",
-                hero_explore: "Explore Tournaments", hero_account: "Create Account",
-                sec_ongoing: "Ongoing Tournaments", sec_upcoming: "Upcoming Tournaments", sec_past: "Recently Finished",
-                tournaments_title: "All Tournaments", tournaments_subtitle: "Filter and join regional competitions.",
+                nav_home: "Home", nav_tournaments: "Tournaments", nav_community: "Leaderboards",
+                btn_login: "Sign In", btn_create: "Create Tournament",
+                hero_badge: "Community eSport & Mobile Gaming",
+                hero_title_1: "Become the champion of", hero_title_2: "Senegal & Beyond",
+                hero_desc: "Join community eSport tournaments. Compete in Mobile Legends, Free Fire, CODM, EA FC. Cashout your winnings instantly via Wave and Orange Money!",
+                hero_explore: "Explore Tournaments", hero_account: "Join Community",
+                sec_ongoing: "Live Tournaments", sec_upcoming: "Upcoming Events", sec_past: "Past Championships",
+                tournaments_title: "Tournament Catalog", tournaments_subtitle: "Filter by games and instant mobile payment options.",
                 back_tournaments: "Back to tournaments",
-                comm_title: "Leaderboard & Ranks", comm_subtitle: "The community honor board.",
-                reset_btn: "Reset data",
-                cust_title: "Customization Studio", cust_subtitle: "Modify the visual appearance of Raptor.gg",
-                cust_palette: "Color Palette", cust_bg: "Background Mode", cust_apply: "Apply",
-                auth_title: "RAPTOR.GG Login", auth_subtitle: "Set up your profile and avatar",
-                role_player: "Player / Team", role_creator: "Organizer",
-                label_pseudo: "Esport Nickname", label_avatar: "Choose Avatar Icon", mode_team: "Team",
-                label_wave: "Wave Number", btn_validate: "Validate Profile",
-                create_title: "Organize a Tournament", create_subtitle: "Boost your organizer reputation",
-                create_tname: "Tournament Title", create_game: "Game", create_prize: "Prize Pool (FCFA)",
-                create_poster: "Poster URL", create_wave: "Organizer Wave Number", create_submit: "Launch Tournament"
+                comm_title: "Leaderboards & Ranks", comm_subtitle: "Community honor board.",
+                reset_btn: "Reset Platform",
+                cust_title: "Customization Studio", cust_subtitle: "Customize your theme and colors.",
+                cust_palette: "Colors & Themes", cust_apply: "Apply",
+                auth_title: "SUNU.ESPORT Profile", auth_subtitle: "Register your account",
+                role_player: "Gamer / Squad", role_creator: "Organizer",
+                label_pseudo: "Gamer Tag / Squad Name", label_avatar: "Select Avatar Icon", mode_team: "Squad",
+                label_wave: "Wave / Orange Money Number", btn_validate: "Save Profile",
+                create_title: "Create Tournament", create_subtitle: "Set rules and prize pool",
+                create_tname: "Tournament Title", create_game: "Game Title", create_prize: "Prize Pool (FCFA)",
+                create_poster: "Poster Image URL", create_wave: "Organizer Mobile Number", create_submit: "Publish Tournament"
             }
         };
 
@@ -537,28 +542,28 @@
 
         let currentUser = null; 
         let currentSelectedRole = 'JOUEUR';
-        let currentSelectedAvatar = 'fa-dragon';
+        let currentSelectedAvatar = 'fa-star';
         let activeTournamentId = null;
 
         let defaultTournaments = [
             {
                 id: 't1',
-                title: 'Dakar Mobile Legends Pro Series',
+                title: 'Dakar Mobile Legends Cup',
                 game: 'MOBILE LEGENDS',
                 status: 'EN COURS',
-                organizer: 'Raptor_Admin',
-                prize: 75000,
+                organizer: 'Senegal_Esport_Master',
+                prize: 150000,
                 maxTeams: 4,
                 poster: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80',
                 teams: [
                     { name: 'Blacklist Dakar', wave: '+221 77 111 22 33', mode: 'Équipe' },
-                    { name: 'Echo Sen', wave: '+221 78 222 33 44', mode: 'Équipe' },
-                    { name: 'Guediawaye Titans', wave: '+221 70 333 44 55', mode: 'Équipe' },
+                    { name: 'Echo Teranga', wave: '+221 78 222 33 44', mode: 'Équipe' },
+                    { name: 'Guediawaye Lions', wave: '+221 70 333 44 55', mode: 'Équipe' },
                     { name: 'Pikine Kings', wave: '+221 76 444 55 66', mode: 'Équipe' }
                 ],
                 matches: [
-                    { id: 'm1', round: 'Demi-Finale 1', teamA: 'Blacklist Dakar', teamB: 'Echo Sen', scoreA: 2, scoreB: 1, winner: 'Blacklist Dakar' },
-                    { id: 'm2', round: 'Demi-Finale 2', teamA: 'Guediawaye Titans', teamB: 'Pikine Kings', scoreA: 0, scoreB: 2, winner: 'Pikine Kings' },
+                    { id: 'm1', round: 'Demi-Finale 1', teamA: 'Blacklist Dakar', teamB: 'Echo Teranga', scoreA: 2, scoreB: 1, winner: 'Blacklist Dakar' },
+                    { id: 'm2', round: 'Demi-Finale 2', teamA: 'Guediawaye Lions', teamB: 'Pikine Kings', scoreA: 0, scoreB: 2, winner: 'Pikine Kings' },
                     { id: 'm3', round: 'Grande Finale', teamA: 'Blacklist Dakar', teamB: 'Pikine Kings', scoreA: null, scoreB: null, winner: null }
                 ]
             }
@@ -566,11 +571,11 @@
 
         let tournaments = JSON.parse(localStorage.getItem('raptor_tournaments')) || defaultTournaments;
         let playersStats = JSON.parse(localStorage.getItem('raptor_players')) || {
-            'DakarEsport_Samba': { wins: 14, total: 16, earnings: 150000, lvl: 8, badge: 'Légende Wave' },
-            'ApexPredators_SN': { wins: 9, total: 12, earnings: 90000, lvl: 5, badge: 'Pro Sniper' }
+            'Samba_Gamer221': { wins: 18, total: 20, earnings: 250000, lvl: 10, badge: 'Légende Wave' },
+            'ApexPredator_SN': { wins: 12, total: 15, earnings: 140000, lvl: 7, badge: 'Sniper' }
         };
         let creatorsStats = JSON.parse(localStorage.getItem('raptor_creators')) || {
-            'Raptor_Admin': { count: 12, totalPrize: 450000 }
+            'Senegal_Esport_Master': { count: 14, totalPrize: 750000 }
         };
 
         function saveToLocalStorage() {
@@ -586,19 +591,10 @@
             localStorage.setItem('raptor_theme_color', JSON.stringify({name, color, darkColor, glow}));
         }
 
-        function setBgMode(black, card, border) {
-            document.documentElement.style.setProperty('--bg-black', black);
-            document.documentElement.style.setProperty('--bg-card', card);
-            document.documentElement.style.setProperty('--border-color', border);
-            localStorage.setItem('raptor_theme_bg', JSON.stringify({black, card, border}));
-        }
-
         window.addEventListener('DOMContentLoaded', () => {
             const savedColor = JSON.parse(localStorage.getItem('raptor_theme_color'));
             if (savedColor) setTheme(savedColor.name, savedColor.color, savedColor.darkColor, savedColor.glow);
-            const savedBg = JSON.parse(localStorage.getItem('raptor_theme_bg'));
-            if (savedBg) setBgMode(savedBg.black, savedBg.card, savedBg.border);
-            
+
             const savedLang = localStorage.getItem('raptor_lang') || 'fr';
             document.getElementById('language-selector').value = savedLang;
             changeLanguage(savedLang);
@@ -617,9 +613,9 @@
                     const btn = document.getElementById(`nav-btn-${n}`);
                     if (btn) {
                         if (n === viewName) {
-                            btn.className = "px-4 py-2 rounded-xl text-sm font-semibold transition-all text-cyber-neon bg-cyber-card border border-cyber-neon";
+                            btn.className = "px-4 py-2 rounded-xl text-sm font-semibold transition-all text-sunu-neon bg-sunu-card border border-sunu-neon";
                         } else {
-                            btn.className = "px-4 py-2 rounded-xl text-sm font-semibold text-cyber-muted hover:text-white transition-all";
+                            btn.className = "px-4 py-2 rounded-xl text-sm font-semibold text-sunu-muted hover:text-white transition-all";
                         }
                     }
                 });
@@ -654,22 +650,22 @@
 
             document.getElementById('role-btn-joueur').addEventListener('click', () => {
                 currentSelectedRole = 'JOUEUR';
-                document.getElementById('role-btn-joueur').className = "p-4 border border-cyber-neon bg-cyber-card rounded-xl text-center space-y-2 transition-all";
-                document.getElementById('role-btn-createur').className = "p-4 border border-cyber-border bg-cyber-card rounded-xl text-center space-y-2 hover:border-cyber-neon transition-all";
+                document.getElementById('role-btn-joueur').className = "p-4 border border-sunu-neon bg-sunu-card rounded-xl text-center space-y-2 transition-all";
+                document.getElementById('role-btn-createur').className = "p-4 border border-sunu-border bg-sunu-card rounded-xl text-center space-y-2 hover:border-sunu-neon transition-all";
                 document.getElementById('mode-inscription-group').classList.remove('hidden');
             });
 
             document.getElementById('role-btn-createur').addEventListener('click', () => {
                 currentSelectedRole = 'CREATEUR';
-                document.getElementById('role-btn-createur').className = "p-4 border border-cyber-neon bg-cyber-card rounded-xl text-center space-y-2 transition-all";
-                document.getElementById('role-btn-joueur').className = "p-4 border border-cyber-border bg-cyber-card rounded-xl text-center space-y-2 hover:border-cyber-neon transition-all";
+                document.getElementById('role-btn-createur').className = "p-4 border border-sunu-neon bg-sunu-card rounded-xl text-center space-y-2 transition-all";
+                document.getElementById('role-btn-joueur').className = "p-4 border border-sunu-border bg-sunu-card rounded-xl text-center space-y-2 hover:border-sunu-neon transition-all";
                 document.getElementById('mode-inscription-group').classList.add('hidden');
             });
 
             document.querySelectorAll('.avatar-opt').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    document.querySelectorAll('.avatar-opt').forEach(b => b.className = "avatar-opt p-2 rounded border border-transparent text-cyber-muted hover:text-white");
-                    btn.className = "avatar-opt p-2 rounded border border-cyber-neon text-cyber-neon";
+                    document.querySelectorAll('.avatar-opt').forEach(b => b.className = "avatar-opt p-2 rounded border border-transparent text-sunu-muted hover:text-white");
+                    btn.className = "avatar-opt p-2 rounded border border-sunu-neon text-sunu-neon";
                     currentSelectedAvatar = btn.getAttribute('data-icon');
                 });
             });
@@ -755,25 +751,25 @@
         function createTournamentCard(t) {
             const defaultPoster = 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80';
             const card = document.createElement('div');
-            card.className = "bg-cyber-card border border-cyber-border hover:border-cyber-neon rounded-xl overflow-hidden cursor-pointer transition-all flex flex-col justify-between group";
+            card.className = "bg-sunu-card border border-sunu-border hover:border-sunu-neon rounded-xl overflow-hidden cursor-pointer transition-all flex flex-col justify-between group";
             card.innerHTML = `
                 <div class="h-36 bg-cover bg-center relative" style="background-image: url('${t.poster || defaultPoster}')">
                     <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
-                    <div class="absolute top-3 left-3"><span class="bg-cyber-card border border-cyber-neon text-cyber-neon text-[10px] font-bold px-2.5 py-1 rounded uppercase">${t.game}</span></div>
-                    <div class="absolute top-3 right-3"><span class="text-[10px] font-bold px-2.5 py-1 rounded uppercase bg-cyber-card text-cyber-muted border border-cyber-border">${t.status}</span></div>
+                    <div class="absolute top-3 left-3"><span class="bg-sunu-card border border-sunu-neon text-sunu-neon text-[10px] font-bold px-2.5 py-1 rounded uppercase">${t.game}</span></div>
+                    <div class="absolute top-3 right-3"><span class="text-[10px] font-bold px-2.5 py-1 rounded uppercase bg-sunu-card text-sunu-muted border border-sunu-border">${t.status}</span></div>
                 </div>
                 <div class="p-5 space-y-4">
                     <div>
-                        <h3 class="font-bold text-white text-base group-hover:text-cyber-neon transition-colors">${t.title}</h3>
-                        <p class="text-cyber-muted text-xs mt-1">Organisateur : <strong class="text-white">${t.organizer}</strong></p>
+                        <h3 class="font-bold text-white text-base group-hover:text-sunu-neon transition-colors">${t.title}</h3>
+                        <p class="text-sunu-muted text-xs mt-1">Organisateur : <strong class="text-white">${t.organizer}</strong></p>
                     </div>
-                    <div class="border-t border-cyber-border pt-3 flex justify-between items-center text-xs">
+                    <div class="border-t border-sunu-border pt-3 flex justify-between items-center text-xs">
                         <div>
-                            <span class="text-cyber-muted block text-[10px]">PRIZE POOL</span>
-                            <span class="font-black text-cyber-neon font-mono">${t.prize.toLocaleString()} FCFA</span>
+                            <span class="text-sunu-muted block text-[10px]">PRIZE POOL</span>
+                            <span class="font-black text-sunu-neon font-mono">${t.prize.toLocaleString()} FCFA</span>
                         </div>
                         <div class="text-right">
-                            <span class="text-cyber-muted block text-[10px]">PLACES</span>
+                            <span class="text-sunu-muted block text-[10px]">PLACES</span>
                             <span class="font-bold text-white">${t.teams.length}/${t.maxTeams}</span>
                         </div>
                     </div>
@@ -796,9 +792,9 @@
             tournaments.filter(t => t.status === 'À VENIR').forEach(t => upcomingContainer.appendChild(createTournamentCard(t)));
             tournaments.filter(t => t.status === 'TERMINÉ').forEach(t => pastContainer.appendChild(createTournamentCard(t)));
 
-            if (!ongoingContainer.hasChildNodes()) ongoingContainer.innerHTML = '<p class="text-cyber-muted text-xs">Aucun tournoi.</p>';
-            if (!upcomingContainer.hasChildNodes()) upcomingContainer.innerHTML = '<p class="text-cyber-muted text-xs">Aucun tournoi.</p>';
-            if (!pastContainer.hasChildNodes()) pastContainer.innerHTML = '<p class="text-cyber-muted text-xs">Aucun tournoi.</p>';
+            if (!ongoingContainer.hasChildNodes()) ongoingContainer.innerHTML = '<p class="text-sunu-muted text-xs">Aucun tournoi.</p>';
+            if (!upcomingContainer.hasChildNodes()) upcomingContainer.innerHTML = '<p class="text-sunu-muted text-xs">Aucun tournoi.</p>';
+            if (!pastContainer.hasChildNodes()) pastContainer.innerHTML = '<p class="text-sunu-muted text-xs">Aucun tournoi.</p>';
         }
 
         function renderTournamentsList() {
@@ -837,19 +833,19 @@
             if (t.status === 'À VENIR') {
                 if (!currentUser) {
                     const btn = document.createElement('button');
-                    btn.className = "bg-cyber-neon text-black font-extrabold px-4 py-2 rounded-xl text-sm";
+                    btn.className = "bg-sunu-neon text-black font-extrabold px-4 py-2 rounded-xl text-sm";
                     btn.innerText = "Se connecter pour s'inscrire";
                     btn.addEventListener('click', () => document.getElementById('modal-auth').classList.remove('hidden'));
                     actionsDiv.appendChild(btn);
                 } else if (currentUser.role === 'JOUEUR' && !isAlreadyRegistered) {
                     const btn = document.createElement('button');
-                    btn.className = "bg-cyber-neon text-black font-extrabold px-4 py-2 rounded-xl text-sm";
+                    btn.className = "bg-sunu-neon text-black font-extrabold px-4 py-2 rounded-xl text-sm";
                     btn.innerText = "S'inscrire";
                     btn.addEventListener('click', () => joinTournament(t.id));
                     actionsDiv.appendChild(btn);
                 } else if (isAlreadyRegistered) {
                     const span = document.createElement('span');
-                    span.className = "bg-cyber-card border border-cyber-neon text-cyber-neon font-bold px-4 py-2 rounded-xl text-sm";
+                    span.className = "bg-sunu-card border border-sunu-neon text-sunu-neon font-bold px-4 py-2 rounded-xl text-sm";
                     span.innerText = "Inscrit";
                     actionsDiv.appendChild(span);
                 }
@@ -860,9 +856,9 @@
 
             renderBracket(t, isOrganizer);
             document.getElementById('detail-teams-list').innerHTML = t.teams.map(team => `
-                <div class="bg-cyber-card p-3 rounded-xl border border-cyber-border flex justify-between items-center text-xs">
-                    <div><span class="font-bold text-white block">${team.name}</span><span class="text-[10px] text-cyber-neon uppercase">${team.mode || 'Équipe'}</span></div>
-                    <span class="text-cyber-muted font-mono"><i class="fa-solid fa-wallet text-cyber-neon mr-1"></i> ${team.wave}</span>
+                <div class="bg-sunu-card p-3 rounded-xl border border-sunu-border flex justify-between items-center text-xs">
+                    <div><span class="font-bold text-white block">${team.name}</span><span class="text-[10px] text-sunu-neon uppercase">${team.mode || 'Équipe'}</span></div>
+                    <span class="text-sunu-muted font-mono"><i class="fa-solid fa-wallet text-sunu-gold mr-1"></i> ${team.wave}</span>
                 </div>
             `).join('');
 
@@ -872,13 +868,13 @@
 
         function renderBracket(t, isOrganizer) {
             document.getElementById('bracket-matches').innerHTML = t.matches.map(m => `
-                <div class="bg-cyber-card border border-cyber-border p-4 rounded-xl space-y-3">
-                    <div class="text-[10px] font-bold text-cyber-neon uppercase tracking-widest">${m.round}</div>
+                <div class="bg-sunu-card border border-sunu-border p-4 rounded-xl space-y-3">
+                    <div class="text-[10px] font-bold text-sunu-neon uppercase tracking-widest">${m.round}</div>
                     <div class="space-y-1 text-sm">
-                        <div class="flex justify-between items-center p-2 rounded-xl ${m.winner === m.teamA ? 'border border-cyber-neon font-bold' : ''}"><span class="text-white">${m.teamA}</span><span class="font-mono font-bold">${m.scoreA !== null ? m.scoreA : '-'}</span></div>
-                        <div class="flex justify-between items-center p-2 rounded-xl ${m.winner === m.teamB ? 'border border-cyber-neon font-bold' : ''}"><span class="text-white">${m.teamB}</span><span class="font-mono font-bold">${m.scoreB !== null ? m.scoreB : '-'}</span></div>
+                        <div class="flex justify-between items-center p-2 rounded-xl ${m.winner === m.teamA ? 'border border-sunu-neon font-bold' : ''}"><span class="text-white">${m.teamA}</span><span class="font-mono font-bold">${m.scoreA !== null ? m.scoreA : '-'}</span></div>
+                        <div class="flex justify-between items-center p-2 rounded-xl ${m.winner === m.teamB ? 'border border-sunu-neon font-bold' : ''}"><span class="text-white">${m.teamB}</span><span class="font-mono font-bold">${m.scoreB !== null ? m.scoreB : '-'}</span></div>
                     </div>
-                    ${isOrganizer && !m.winner && m.teamA !== 'En attente...' ? `<button onclick="setWinner('${t.id}', '${m.id}')" class="w-full bg-cyber-card border border-cyber-neon text-cyber-neon text-xs font-bold py-1.5 rounded-xl">Définir Vainqueur</button>` : ''}
+                    ${isOrganizer && !m.winner && m.teamA !== 'En attente...' ? `<button onclick="setWinner('${t.id}', '${m.id}')" class="w-full bg-sunu-card border border-sunu-neon text-sunu-neon text-xs font-bold py-1.5 rounded-xl">Définir Vainqueur</button>` : ''}
                 </div>
             `).join('');
         }
@@ -913,11 +909,11 @@
 
         function renderLeaderboards() {
             document.getElementById('leaderboard-players-body').innerHTML = Object.entries(playersStats).sort((a,b) => b[1].wins - a[1].wins).map(([name, data], idx) => `
-                <tr><td class="py-3 px-2 font-black text-cyber-neon">#${idx + 1}</td><td class="py-3 px-2 font-bold text-white">${name}</td><td class="py-3 px-2">LVL ${data.lvl || 1}</td><td class="py-3 px-2">${data.wins}V</td><td class="py-3 px-2 text-right text-cyber-neon font-mono">${data.earnings.toLocaleString()} FCFA</td></tr>
+                <tr><td class="py-3 px-2 font-black text-sunu-neon">#${idx + 1}</td><td class="py-3 px-2 font-bold text-white">${name}</td><td class="py-3 px-2">LVL ${data.lvl || 1}</td><td class="py-3 px-2">${data.wins}V</td><td class="py-3 px-2 text-right text-sunu-neon font-mono">${data.earnings.toLocaleString()} FCFA</td></tr>
             `).join('');
 
             document.getElementById('leaderboard-creators-body').innerHTML = Object.entries(creatorsStats).sort((a,b) => b[1].totalPrize - a[1].totalPrize).map(([name, data], idx) => `
-                <tr><td class="py-3 px-2 font-black text-cyber-neon">#${idx + 1}</td><td class="py-3 px-2 font-bold text-white">${name}</td><td class="py-3 px-2">${data.count}</td><td class="py-3 px-2 text-right text-cyber-neon font-mono">${data.totalPrize.toLocaleString()} FCFA</td></tr>
+                <tr><td class="py-3 px-2 font-black text-sunu-neon">#${idx + 1}</td><td class="py-3 px-2 font-bold text-white">${name}</td><td class="py-3 px-2">${data.count}</td><td class="py-3 px-2 text-right text-sunu-neon font-mono">${data.totalPrize.toLocaleString()} FCFA</td></tr>
             `).join('');
         }
     </script>
